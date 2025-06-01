@@ -1,0 +1,42 @@
+# Parameters for the model_crane environment
+
+# Add the file_directory of input poitcloud folder 
+file_directory: /media/aisl2/aisl_data/catkin_ws/src/latest_crane/wall_ground_plane_extractor_from_pointcloud/input_pointcloud_data/build_5_varying_boom_Angle_during_cycle_capture_00003/
+# pcd_file_name: capture00001.pcd
+pcd_file_name: original_data.pcd
+
+
+number_of_wall_planes: 4
+number_of_ground_planes: 1
+
+num_iteration: 50
+
+
+
+# A lower covariance matrix, typically indicates lower uncertainty 
+# Information Matrix = 1 / Covariance Matrix
+# A higher information matrix indicates lower uncertainty
+
+
+floor_edge_stddev:  .000000002
+floor_edge_stddev2: .00000002
+floor_edge_stddev3: .000000000002
+floor_edge_stddev4: .000000000002
+
+wall_edge_stddev1: .00000000000000002
+wall_edge_stddev2: .000000000000000002
+wall_edge_stddev3: .000000000000000002
+wall_edge_stddev4: 200
+wall_edge_stddev5: 200
+plane_to_plane_edge_stddev: 00
+parallel_edge_stddev:  0.00
+
+
+# parameters for Pose Node. 
+# lower the stddev value > lower the 
+const_stddev_x: .4
+const_stddev_y: .4
+const_stddev_z: .4
+const_stddev_q1: 4
+const_stddev_q2: 4
+const_stddev_q3: 4

@@ -1,0 +1,7 @@
+/usr/local/lib/libfanda.a
+/usr/local/include/fanda/Udp.hpp
+/usr/local/include/fanda/Csv.hpp
+/usr/local/include/fanda/Zip.hpp
+/usr/local/include/fanda/Tcp.hpp
+/usr/local/include/fanda/String.hpp
+/usr/local/include/fanda/File.hpp

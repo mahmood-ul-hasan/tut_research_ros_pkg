@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="imu_128_macro_loam" params="parent prefix xyz rpy">
+		
+
+		<joint name="${prefix}_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child  link="${prefix}_link"/>
+			<axis xyz="1 0 0" />
+			<origin xyz="${xyz}" rpy="${rpy}"/> 
+		</joint>
+
+		<link name="${prefix}_link">
+			<!-- <origin xyz="${xyz}" rpy="${rpy}"/> -->
+			<visual>
+			    <!-- <origin xyz="${xyz}" rpy="0 0 0"/> -->
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.2 0.3"/>
+					<material name="blue" />
+				</geometry>
+			</visual>
+
+			<inertial>
+			 	<origin xyz="0 0 1" rpy="0 0 0"/>
+				<mass value="0.5"/>
+				<geometry>
+					<box size="0.2 0.2 0.3"/>
+				</geometry>
+				<inertia
+					ixx="0.001"
+					ixy="0.001"
+					ixz="0.001"
+					iyy="0.001"
+					iyz="0.001"
+					izz="0.001"/>
+			</inertial>
+
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.2 0.3"/>
+				</geometry>
+			</collision>
+		</link>
+
+		<gazebo reference="${prefix}_link">
+		<material>Gazebo/Red</material>
+		<gravity>true</gravity>
+		<sensor name="imu_sensor" type="imu">
+			<always_on>true</always_on>
+			<!-- <update_rate>100</update_rate> -->
+			<visualize>true</visualize>
+			<topic>data</topic>
+			<plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+			<!-- <topicName>${prefix}_link/data</topicName> -->
+			<topicName>${prefix}/data</topicName>  <!-- loam-->
+			<!-- <bodyName>${prefix}_link</bodyName> -->
+			<update_rate>1000</update_rate>
+			<updateRateHZ>1000</updateRateHZ>
+			<gaussianNoise>0.00</gaussianNoise>
+			<xyzOffset>0.00 0.00 0.00</xyzOffset>
+			<rpyOffset>0.00 0.00 0.00</rpyOffset>
+			<!--gaussian 0.01, xyz 0.001, rpy, 0.01-->
+			<!-- <frameName>${prefix}_link</frameName> -->
+			<frameName>${prefix}</frameName>  <!-- loam-->
+			</plugin>
+			<pose>0 0 0 0 0 0</pose>
+		</sensor>
+		</gazebo>
+  </xacro:macro> 
+</robot>

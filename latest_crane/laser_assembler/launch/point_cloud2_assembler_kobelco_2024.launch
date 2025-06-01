@@ -1,0 +1,56 @@
+<launch>
+
+ 
+
+<!-- Node to assemble all PointCloud2 data using the PointCloud2Assembler class -->
+  <node pkg="laser_assembler" type="point_cloud2_assembler" name="point_cloud2_assembler">
+    
+    <!-- Remap from the /velodyne_points topic to the cloud topic expected by the assembler -->
+    <remap from="cloud" to="/velodyne_points"/>
+    <!-- <remap from="cloud" to="/velodyne_points_filtered"/> -->
+    
+    
+
+    <!-- Define parameters for the PointCloud2Assembler node -->
+    <param name="max_clouds" type="int" value="7000"/>
+    <param name="fixed_frame" type="string" value="world"/>
+    
+    <!-- Optionally, you can set a frame for TF transformations, e.g. -->
+    <param name="frame_id" type="string" value="velodyne"/>
+
+  </node>
+
+
+
+
+ <node type="LaserAssemblerVelodyne" pkg="laser_assembler"  name="LaserAssembler" output="screen" />  
+ <!-- <node type="LaserAssemblerVelodyne.py" pkg="laser_assembler"  name="LaserAssembler" output="screen" />   -->
+
+  <!--Rviz   -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+
+      <!-- <node type="tf2_broadcaster_kobelco_2024.py" pkg="laser_to_pcl"  name="tf2_broadcaster_kobelco_2024"  output="screen" required="true"/>   -->
+
+
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint.launch"/>
+
+
+
+  <node name="odom_crane_structural_info_republisher" pkg="trajectory_analysis" type="odom_crane_structural_info_republisher_in_world_frame_kobelco_2024.py" output="screen" />
+
+   
+      <node name="tf_to_path_crane_info" pkg="tf_to_trajectory" type="tf_to_path.py" output="screen">
+            <param name="parent_frame_id" value="world"/>
+            <param name="child_frame_id" value="crane_struct_info"/>
+            <param name="out_topic_name" value="/traj_by_crane_structure"/>
+            <param name="append_rate" value="5"/>
+      </node>
+
+</launch>
+
+
+
+

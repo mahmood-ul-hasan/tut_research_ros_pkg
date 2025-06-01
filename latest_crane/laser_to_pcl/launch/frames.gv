@@ -1,0 +1,11 @@
+digraph G {
+"base_link" -> "lower_link"[label=" Broadcaster: /tf2_broadcaster_by_imu\nAverage rate: 50.202\nBuffer length: 4.96\nMost recent transform: 52216.88\nOldest transform: 52211.92\n"];
+"world" -> "base_link"[label=" Broadcaster: /tf2_broadcaster_by_imu\nAverage rate: 50.303\nBuffer length: 4.95\nMost recent transform: 52216.87\nOldest transform: 52211.92\n"];
+"boom_link" -> "front_laser_link"[label=" Broadcaster: /tf2_broadcaster_by_imu\nAverage rate: 50.202\nBuffer length: 4.96\nMost recent transform: 52216.87\nOldest transform: 52211.91\n"];
+"lower_link" -> "upper_link"[label=" Broadcaster: /tf2_broadcaster_by_imu\nAverage rate: 78.471\nBuffer length: 4.97\nMost recent transform: 52216.88\nOldest transform: 52211.91\n"];
+"upper_link" -> "boom_link"[label=" Broadcaster: /tf2_broadcaster_by_imu\nAverage rate: 56.301\nBuffer length: 4.92\nMost recent transform: 52216.87\nOldest transform: 52211.95\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 52216.92"[ shape=plaintext ] ;
+}->"world";
+}

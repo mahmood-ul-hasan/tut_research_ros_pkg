@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="imu_128_macro_VINS" params="parent prefix xyz rpy">
+		
+
+		<joint name="${prefix}_joint" type="fixed">
+		<parent link="${parent}"/>
+		<child  link="${prefix}"/>
+		<axis xyz="1 0 0" />
+        <origin xyz="${xyz}" rpy="${rpy}"/> 
+		</joint>
+
+		<link name="${prefix}">
+			<!-- <origin xyz="${xyz}" rpy="${rpy}"/> -->
+			<visual>
+			    <!-- <origin xyz="${xyz}" rpy="0 0 0"/> -->
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+			</visual>
+
+			<inertial>
+			 	<origin xyz="0 0 0" rpy="0 0 0"/>
+				<mass value="0.2"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+				<inertia
+					ixx="0.001"
+					ixy="0.001"
+					ixz="0.001"
+					iyy="0.001"
+					iyz="0.001"
+					izz="0.001"/>
+			</inertial>
+
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+			</collision>
+		</link>
+
+
+<gazebo reference="${prefix}">
+		<material>Gazebo/Red</material>
+		<gravity>true</gravity>
+	<sensor name="imu_sensor" type="imu">
+		<always_on>true</always_on>
+		<parent>base_link</parent>
+		<update_rate>600</update_rate>
+		<visualize>true</visualize>
+		<topic>imu0</topic>
+	
+		<plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+			<topicName>imu0</topicName>
+			<bodyName>imu_link_stereo</bodyName>
+			<updateRateHZ>600.0</updateRateHZ>
+			<gaussianNoise>0.0</gaussianNoise>
+			<xyzOffset>0 0 0</xyzOffset>
+			<rpyOffset>0 0 0</rpyOffset>
+			<frameName>imu4</frameName>
+
+			<accelerometerNoiseDensity>0.00</accelerometerNoiseDensity>
+			<accelerometerRandomWalk>0.000</accelerometerRandomWalk>
+
+			<gyroscopeNoiseDensity>0.000</gyroscopeNoiseDensity>
+			<gyroscopeRandomWalk>0.0000</gyroscopeRandomWalk>
+
+			<!-- <gyroscopeNoiseDensity>0.0001</gyroscopeNoiseDensity>
+			<gyroscopeRandomWalk>0.0001</gyroscopeRandomWalk> -->
+			<gyroscopeTurnOnBiasSigma>0.0</gyroscopeTurnOnBiasSigma>
+
+			<!-- <accelerometerNoiseDensity>0.0002</accelerometerNoiseDensity>
+			<accelerometerRandomWalk>0.0002</accelerometerRandomWalk> -->
+			<accelerometerTurnOnBiasSigma>0.0</accelerometerTurnOnBiasSigma>
+		</plugin>
+      	<pose>0 0 0 0 0 0</pose>
+    </sensor>
+</gazebo> 
+
+  </xacro:macro> 
+</robot>

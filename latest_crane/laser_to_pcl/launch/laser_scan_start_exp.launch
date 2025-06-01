@@ -1,0 +1,34 @@
+<launch>
+
+
+  <!-- Run Xsens IMU node -->
+    <include file="$(find xsens_mti_driver)/launch/xsens_mti_node.launch" />
+
+  <!-- Run ld_lrs3611 node -->
+    <include file="$(find urg_node)/launch/urg_lidar.launch" />
+
+    <!-- Run rotating_base_node -->
+    <include file="$(find orion_rotating_base)/launch/rotating_base.launch" />
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler_optimize">
+        <remap from="scan" to="/scan"/>
+        <param name="max_scans" type="int" value="4000" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+  <node type="LaserAssembler_exp.py" pkg="laser_to_pcl"  name="LaserAssembler_exp" output="screen"/>  
+
+
+  <!--Rviz 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+  -->  
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint.launch"/>
+
+
+</launch>
+
+
+
+

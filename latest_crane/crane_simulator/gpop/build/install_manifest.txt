@@ -1,0 +1,7 @@
+/usr/local/lib/libGpop.a
+/usr/local/include/Gpop/Vector.hpp
+/usr/local/include/Gpop/Series.hpp
+/usr/local/include/Gpop/Hist.hpp
+/usr/local/include/Gpop/Pie.hpp
+/usr/local/include/Gpop/Bar.hpp
+/usr/local/include/Gpop/Gnuplot.hpp

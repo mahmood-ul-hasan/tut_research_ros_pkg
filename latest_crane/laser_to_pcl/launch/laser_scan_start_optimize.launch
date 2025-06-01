@@ -1,0 +1,13 @@
+<launch>
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler_optimize">
+        <remap from="scan" to="front_laser_link/scan"/>
+        <param name="max_scans" type="int" value="6000" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+  <node type="LaserAssembler_optimize.py" pkg="laser_to_pcl"  name="LaserAssembler_optimize" output="screen"/>  
+
+</launch>
+
+
+
+

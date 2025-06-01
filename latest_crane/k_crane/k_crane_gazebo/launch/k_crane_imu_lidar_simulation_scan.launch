@@ -1,0 +1,52 @@
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find k_crane_gazebo)/rviz/k_crane_imu_liadr_simulation_scan.rviz"/>  
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar.launch"/>
+
+
+   
+	<arg name="ldlrs_model" default="$(find lrs_orion_simulator)/xacro/dtw_laser_staticfalse.xacro" />  
+	<param name="ldlrs_description" command="$(find xacro)/xacro $(arg ldlrs_model) --inorder"/>
+   
+
+	<!-- we create empty world, changing only the name of the world to be launch -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<!--arg name="world_name" value="$(find k_crane_gazebo)/worlds/sim.world"/-->
+		<arg name="world_name" default="$(find k_crane_gazebo)/worlds/world_with_wall.world"/>  
+		<arg name="paused" default="true"/>
+		<arg name="use_sim_time" default="true"/>
+		<arg name="recording" default="false"/>
+		<arg name="debug" default="false"/>
+		<!--arg name="physics" value="bullet"/-->
+	</include>
+
+	<!-- run a python script to send a service-call to gazebo_ros to spawn URDF of k_crane -->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model k_crane -param robot_description -J pitch_joint 1.0 -unpause"/>
+
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param ldlrs_description -urdf -model dtw_robot -x 0 -y -10 -z 0" />
+
+	<!-- run nodes for moving lidar sensor model -->
+	<arg name="is_lidar_sensor_system_on_boom_arg" default="true" />
+	<node pkg="move_lidar_sensor_model" name="sensor_model_respawner_node" type="sensor_model_respawner_node" >
+        <param name="is_k_crane" value="true" />
+        <param name="is_lidar_sensor_system_on_boom" value="$(arg is_lidar_sensor_system_on_boom_arg)" />
+        <param name="is_collision_warning" value="false" />
+    </node>
+    <node pkg="move_lidar_sensor_model" name="sensor_model_tf_broadcaster_node" type="sensor_model_tf_broadcaster_node" >
+        <param name="is_k_crane" value="true" />
+        <param name="is_lidar_sensor_system_on_boom" value="$(arg is_lidar_sensor_system_on_boom_arg)" />
+    </node>
+	<node pkg="move_lidar_sensor_model" name="k_crane_joint_tf_broadcaster_node" type="k_crane_joint_tf_broadcaster_node" />
+
+	<!-- ros_control k_crane launch file -->
+	<include file="$(find k_crane_control)/launch/k_crane_control.launch"/>
+
+	<!-- to convert the laser scan to point cloud-->
+	<include file="$(find laser_to_pcl)/launch/laser_scan_start.launch"/>
+
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+</launch>

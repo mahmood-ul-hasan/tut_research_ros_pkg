@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="warning_vis_box" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- <xacro:include filename="$(find lrs_orion_simulator)/xacro/move_macro.xacro" />
+  <xacro:include filename="$(find lrs_orion_simulator)/xacro/laser_macro.xacro" /> -->
+
+  <link name="base_link"/>
+
+	<link name="warning_vis_box_link">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.7 1.0 2.0"/>
+			</geometry>
+		</visual>
+    <collision>
+      <origin xyz="0.0 0.0 -0.9" rpy="0.0 0.0 0.0" />
+      <geometry>
+				<cylinder radius="0.1" length="0.1"/>
+      </geometry>
+    </collision>
+	</link>
+	<!-- <gazebo reference="warning_vis_box_link">
+		<material>Gazebo/Yellow</material>
+	</gazebo> -->
+
+	<joint name="warning_vis_box_joint" type="fixed">
+		<parent link="base_link"/>
+		<child  link="warning_vis_box_link"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+  <!-- <joint name="pedestrian_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="pedestrian_link"/>
+    <origin xyz="0.0 0.0 2.5" rpy="0.0 0.0 0.0"/>
+  </joint>
+  <link name="pedestrian_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="2.0 2.0 5.0" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+        <box size="2.0 2.0 5.0" />
+      </geometry>
+    </collision>
+  </link> -->
+  <gazebo reference="warning_vis_box_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <!-- <gazebo>
+      <static>true</static>
+  </gazebo> -->
+
+  <!-- <xacro:body_macro parent="base_link" /> -->
+  <!--xacro:wheel_macro prefix="left_wheel"  parent="base_link" xyz="0 0.1 0.05"/>
+  <xacro:wheel_macro prefix="right_wheel" parent="base_link" xyz="0 -0.1 0.05"/-->
+
+  <!-- <xacro:laser_macro prefix="front_laser" parent="base_link" xyz="0 0 0.13" rpy="0 ${radians(90)} 0"/> -->
+   <!--rpy -> xyz axis-->
+
+  <!-- <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/dtw_robot</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo> -->
+  <!-- <gazebo>
+      <static>true</static>
+  </gazebo> -->
+
+</robot>

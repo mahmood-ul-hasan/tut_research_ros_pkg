@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="camera_macro" params="parent prefix xyz rpy">
+
+
+	<joint name="${prefix}_joint" type="fixed">
+		<parent link="${parent}"/>
+		<child  link="${prefix}"/>
+		<axis xyz="1 0 0" />
+        <origin xyz="${xyz}" rpy="${rpy}"/> 
+		</joint>
+
+		<link name="${prefix}">
+			<!-- <origin xyz="${xyz}" rpy="${rpy}"/> -->
+			<visual>
+			    <!-- <origin xyz="${xyz}" rpy="0 0 0"/> -->
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+			</visual>
+
+			<inertial>
+			 	<origin xyz="0 0 1" rpy="0 0 0"/>
+				<mass value="0.1"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+				<inertia
+					ixx="0.001"
+					ixy="0.001"
+					ixz="0.001"
+					iyy="0.001"
+					iyz="0.001"
+					izz="0.001"/>
+			</inertial>
+
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.2 0.05 0.1"/>
+				</geometry>
+			</collision>
+		</link>
+
+
+
+    <gazebo reference="${prefix}">
+    <material>Gazebo/Red</material>
+		<gravity>true</gravity>
+      <sensor type="camera" name="${prefix}">
+        <update_rate>50.0</update_rate>
+        <camera name="${prefix}">
+          <pose>0 0 0 0 ${radians(0)} ${radians(0)}</pose>
+          <horizontal_fov>1.04</horizontal_fov>
+          <image>
+            <width>752</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>2</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>50.0</updateRate>
+          <cameraName>camera</cameraName>
+          <imageTopicName>/cam0/image_raw</imageTopicName>
+          <cameraInfoTopicName>/cam0/camera_info</cameraInfoTopicName>
+          <frameName>cam0</frameName>
+          <hackBaseline>0.0</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro> 
+</robot>

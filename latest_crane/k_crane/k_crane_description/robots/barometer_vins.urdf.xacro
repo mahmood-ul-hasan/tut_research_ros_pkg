@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="barometer_macro" params="parent prefix xyz rpy">
+
+        <joint name="${prefix}_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child  link="${prefix}"/>
+            <origin xyz="${xyz}" rpy="${rpy}"/> 
+        </joint>
+
+        <link name="${prefix}">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.2 0.05 0.1"/>
+                </geometry>
+            </visual>
+
+            <inertial>
+                <mass value="0.25"/>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="0.2 0.05 0.1"/>
+                </geometry>
+            </collision>
+        </link>
+
+    <gazebo>
+   <!-- <plugin name="quadrotor_baro_sim" filename="libhector_gazebo_ros_baro.so">
+            <updateRate>10.0</updateRate>
+            <bodyName>${prefix}</bodyName>
+            <frameId>${prefix}</frameId>
+            <topicName>pressure_height</topicName>
+            <altimeterTopicName>altimeter</altimeterTopicName>
+            <offset>0</offset>
+            <drift>1.0</drift>
+            <gaussianNoise>0.1</gaussianNoise>
+          </plugin>
+    </gazebo> -->
+
+
+        <!-- <gazebo reference="${prefix}">
+            <sensor name="barometer_sensor" type="altimeter">
+                <always_on>true</always_on>
+                <update_rate>20.0</update_rate>
+                <visualize>true</visualize>
+                <plugin name="baro_plugin" filename="libhector_gazebo_ros_baro.so">
+                    <updateRate>20.0</updateRate>
+                    <bodyName>${prefix}</bodyName>
+                    <frameId>${prefix}</frameId>
+                    <rosTopicName>baro</rosTopicName>
+                    <rosNamespace>/${prefix}</rosNamespace>
+                    <offset>0</offset>
+                    <drift>10.0</drift>
+                    <gaussianNoise>0.1</gaussianNoise>
+                </plugin>
+            </sensor>
+        </gazebo>  -->
+
+    </xacro:macro> 
+</robot>

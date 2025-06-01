@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="k_crane.urdf.xacro"/>
+	<!-- <xacro:include filename="imu_100.urdf.xacro"/>  -->
+	<xacro:include filename="imu_128_macro.urdf.xacro"/>
+
+   	<xacro:imu_128_macro prefix="imu_boom" parent="boom_link" xyz = "2.819 -0.537 0.21" rpy="-${radians(90)} -${radians(0)} 0"/>
+   	<xacro:imu_128_macro prefix="imu_boom_upper" parent="boom_link" xyz = "30 -0.537 0.21" rpy="-${radians(90)} -${radians(0)} 0"/>
+
+  <!-- 
+	Continuous joint  -->
+    <!-- <xacro:include filename="laser_move_macro.urdf.xacro"/>
+    <xacro:laser_move_macro prefix="front_laser" parent="boom_link" xyz="20 0 0" rpy="${radians(0)} 0 ${radians(0)}"/>  -->
+
+
+	<!-- <xacro:laser_move_macro prefix="front_laser" parent="upper_link" xyz = "0 0 12" rpy="0 ${radians(90)} 0"/>   -->
+<!-- 
+
+  <xacro:include filename="$(find k_crane_description)/robots/HDL-32E.urdf.xacro"/>
+  <xacro:HDL-32E name="velodyne"  parent="boom_link"  topic="/velodyne_points" hz="10" samples="220" xyz="20 0 0" rpy="${radians(0)} 0 0" >
+</xacro:HDL-32E> -->
+
+
+  <xacro:include filename="$(find k_crane_description)/robots/HDL-32E.urdf.xacro"/>
+  <xacro:HDL-32E parent="boom_link" name="velodyne" topic="/velodyne_points" hz="10" samples="220">
+    <origin xyz="20 0 0" rpy="0 0 0" />
+  </xacro:HDL-32E>
+
+
+
+ <!-- <xacro:include filename="VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="boom_link" name="velodyne2" topic="/velodyne_points2" hz="10" samples="440">
+    <origin xyz="0 0 0.4" rpy="0 0 0" />
+  </xacro:VLP-16> -->
+
+
+
+
+  
+
+</robot>
+

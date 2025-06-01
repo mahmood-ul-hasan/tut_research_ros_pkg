@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<robot name="c_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- include common macro -->
+	<xacro:include filename="common.urdf.xacro"/>
+
+	<!-- base_link -->
+	<link name="base_link"/>
+
+	<!-- lower link -->
+	<link name="lower_link">
+		<visual>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="lower"/>
+		</visual>
+		<collision>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="lower"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="23141.64"
+				ixy="0.54"
+				ixz="4395.71"
+				iyy="24360.18"
+				iyz="5.63"
+				izz="1218.63"/>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+			<xacro:default_mesh name="lower"/>
+			<mass value="38882"/>
+		</inertial>
+	</link>
+
+	<joint name="body_joint" type="fixed">
+		<!--origin xyz="0 0 1.4" rpy="0 0 0"/-->
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<parent link="base_link"/>
+		<child  link="lower_link"/>
+	</joint>
+
+	<!-- upper link -->
+	<link name="upper_link">
+		<visual>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="upper"/>
+		</visual>
+		<collision>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="upper"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="101881.52"
+				ixy="-50965.14"
+				ixz="-273528.32"
+				iyy="1007600.56"
+				iyz="12056.92"
+				izz="910589.22"/>
+			<!--origin xyz="-2.887 -0.042, 1.010" rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<xacro:default_mesh name="upper"/>
+			<mass value="77333"/>
+		</inertial>
+	</link>
+
+	<joint name="yaw_joint" type="revolute">
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<parent link="lower_link"/>
+		<child  link="upper_link"/>
+		<axis xyz="0 0 1"/>
+		<limit lower="-1.57" upper="1.57" effort="1000000" velocity="10000"/>
+	</joint>
+	<xacro:default_transmission suffix="yaw_joint"/>
+
+
+	<link name="boom_link">
+		<visual>
+			<xacro:default_mesh name="boom"/>
+			<!--origin xyz="-1.1 0 -0.87" rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</visual>
+		<collision>
+			<xacro:default_mesh name="boom"/>
+			<!--origin xyz="-1.1 0 -0.87" rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="3398809.65"
+				ixy="-2996.64"
+				ixz="18.45"
+				iyy="7038.42"
+				iyz="8974.74"
+				izz="3398634.48"/>
+			<!--origin xyz="-1.1 0 -0.87" rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<xacro:default_mesh name="boom"/>
+			<mass value="8243"/>
+		</inertial>
+	</link>
+
+	<joint name="pitch_joint" type="revolute">
+		<origin xyz="1.4 0.191 1.008" rpy="0 0 0"/>
+		<parent link="upper_link"/>
+		<child  link="boom_link"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1" upper="1" effort="100000000" velocity="10000"/>
+	</joint>
+	<xacro:default_transmission suffix="pitch_joint"/>
+
+
+	<link name="rope_link">
+		<visual>
+			<geometry>
+				<cylinder length="10" radius="0.1"/>
+			</geometry>
+			<origin xyz="0 0 -5" rpy="0 0 0"/>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder length="10" radius="0.1"/>
+			</geometry>
+			<origin xyz="0 0 -5" rpy="0 0 0"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="0.01"
+				ixy="0.00001"
+				ixz="0.00001"
+				iyy="0.01"
+				iyz="0.0001"
+				izz="0.01"/>
+			<origin xyz="0 0 -5" rpy="0 0 0"/>
+			<mass value="1"/>
+		</inertial>
+	</link>
+
+
+	<link name="ball_x_joint_link">
+		<origin xyz="14.13 0.2 22.6" rpy="0 0 0"/>
+		<inertial>
+			<mass value="0.01"/>
+			<inertia
+				ixx="0.1"
+				ixy="0.0001"
+				ixz="0.0001"
+				iyy="0.1"
+				iyz="0.0001"
+				izz="0.1"/>
+		</inertial>
+	</link>
+
+	<joint name="ball_x_joint" type="continuous">
+		<origin xyz="14.13 0.2 22.6" rpy="0 0 0"/>
+		<parent link="boom_link"/>
+		<child  link="ball_x_joint_link"/>
+		<axis xyz="1 0 0"/>
+		<!--dynamics damping="0.05"/-->
+	</joint>
+
+
+	<link name="ball_y_joint_link">
+		<origin xyz="14.13 0.2 22.6" rpy="0 0 0"/>
+		<inertial>
+			<mass value="0.01"/>
+			<inertia
+				ixx="0.1"
+				ixy="0.0001"
+				ixz="0.0001"
+				iyy="0.1"
+				iyz="0.0001"
+				izz="0.1"/>
+		</inertial>
+	</link>
+
+	<joint name="ball_y_joint" type="continuous">
+		<parent link="ball_x_joint_link"/>
+		<child  link="ball_y_joint_link"/>
+		<axis xyz="0 1 0"/>
+		<!--dynamics damping="0.05"/-->
+	</joint>
+
+	<joint name="rope_joint" type="fixed">
+		<parent link = "ball_y_joint_link"/>
+		<child  link = "rope_link"/>
+	</joint>
+
+
+	<link name="load_link">
+		<visual>
+			<geometry>
+				<box size="2 2 2"/>
+			</geometry>
+			<origin xyz="0 0 -11" rpy="0 0 0"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="2 2 2"/>
+			</geometry>
+			<origin xyz="0 0 -11" rpy="0 0 0"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="0.1"
+				ixy="0.0001"
+				ixz="0.0001"
+				iyy="0.1"
+				iyz="0.0001"
+				izz="0.1"/>
+			<box size="2 2 2"/>
+			<mass value="10"/>
+			<origin xyz="0 0 -11" rpy="0 0 0"/>
+		</inertial>
+	</link>
+
+	<joint name="load_joint" type="fixed">
+		<parent link = "rope_link"/>
+		<child  link = "load_link"/>
+	</joint>
+
+	<!-- link fixed in order to stand rigidly in gazebo -->
+	<link name="world"/>
+	<joint name="fixed" type="fixed">
+		<parent link="world"/>
+		<child  link="base_link"/>
+	</joint>
+
+	<gazebo reference="rope_link">
+		<visual>
+			<material>
+				<ambient> 0 0.5 0 1.0</ambient>
+				<diffuse> 0 0.5 0 1.0</diffuse>
+				<specular> 0 0.5 0 1.0</specular>
+				<emissive> 0 0.5 0 1.0</emissive>
+			</material>
+		</visual>
+	</gazebo>
+
+	<gazebo reference="load_link">
+		<visual>
+			<material>
+				<ambient> 0 0.5 0.5 1.0</ambient>
+				<diffuse> 0 0.5 0.5 1.0</diffuse>
+				<specular> 0 0.5 0.5 1.0</specular>
+				<emissive> 0 0.5 0.5 1.0</emissive>
+			</material>
+		</visual>
+	</gazebo>
+
+</robot>

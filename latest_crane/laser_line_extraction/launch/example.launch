@@ -1,0 +1,104 @@
+<launch>
+
+
+<!-- The parameters are listed in alphabetical order.
+
+bearing_std_dev (default: 0.001)
+The standard deviation of bearing uncertainty in the laser scans (rad).
+frame_id (default: "laser")
+The frame in which the line segments are published.
+least_sq_angle_thresh (default: 0.0001)
+Change in angle (rad) threshold to stop iterating least squares (least_sq_radius_thresh must also be met).
+least_sq_radius_thresh (default: 0.0001)
+Change in radius (m) threshold to stop iterating least squares (least_sq_angle_thresh must also be met).
+max_line_gap (default: 0.4)
+The maximum distance between two points in the same line (m).
+min_line_length (default: 0.5)
+Lines shorter than this are not published (m).
+min_line_points (default: 9)
+Lines with fewer points than this are not published.
+min_range (default: 0.4)
+Points closer than this are ignored (m).
+max_range (default: 10000.0)
+Points farther than this are ignored (m).
+min_split_dist (default: 0.05)
+When performing "split" step of split and merge, a split between two points results when the two points are at least this far apart (m).
+outlier_dist (default: 0.05)
+Points who are at least this distance from all their neighbours are considered outliers (m).
+publish_markers (default: false)
+Whether or not markers are published.
+range_std_dev (default: 0.02)
+The standard deviation of range uncertainty in the laser scans (m).
+scan_topic (default: "scan")
+The LaserScan topic. -->
+
+
+  <node name="line_extractor" pkg="laser_line_extraction" type="line_extraction_node" output="screen">
+
+
+    <param name="~frequency" value="30.0" />
+    <param name="~frame_id" value="laser" />
+    <param name="~scan_topic" value="/ld_lrs3611/scan_filtered" />
+    <!-- <param name="~scan_topic" value="/front_laser_link/scan" /> -->
+
+
+    
+    <param name="~publish_markers" value="false" />
+    <param name="~bearing_std_dev" value="1e-5" />
+    <param name="~range_std_dev" value="0.012" />
+    <param name="~least_sq_angle_thresh" value="0.0001" />
+    <param name="~least_sq_radius_thresh" value="0.0001" />
+
+<!-- ideal values -->
+    <!-- <param name="~max_line_gap" value="5" />
+    <param name="~min_line_length" value="2" />
+    <param name="~min_range" value="0.3" />
+    <param name="~max_range" value="1000.0" />
+    <param name="~min_split_dist" value="0.4" />
+    <param name="~outlier_dist" value="0.6" />
+    <param name="~min_line_points" value="5" /> -->
+
+<!-- Gazebo -->
+    <!-- <param name="~frequency" value="30.0" />
+    <param name="~max_line_gap" value="5" />
+    <param name="~min_line_length" value="7" />
+    <param name="~min_range" value="0.3" />
+    <param name="~max_range" value="1000.0" />
+    <param name="~min_split_dist" value="3" />
+    <param name="~outlier_dist" value="0.6" />
+    <param name="~min_line_points" value="1" /> -->
+
+
+
+    <!-- <param name="~max_line_gap" value="5" /> 
+    <param name="~min_line_length" value="5" />     
+    <param name="~min_range" value="0.3" />           
+    <param name="~max_range" value="1000.0" />       
+    <param name="~min_split_dist" value=".4" />          
+    <param name="~outlier_dist" value=".6" />                
+    <param name="~min_line_points" value="5" />        -->
+
+
+<!-- Kobelco site real crane -->
+    <param name="~max_line_gap" value="20" /> 
+    <param name="~min_line_length" value="1.5" />     
+    <param name="~min_range" value="0.3" />           
+    <param name="~max_range" value="1000.0" />       
+    <param name="~min_split_dist" value="5" />          
+    <param name="~outlier_dist" value="5" />                
+    <param name="~min_line_points" value="2" />       
+
+
+
+    <!-- <param name="~max_line_gap" value="5" />  The maximum distance between two points in the same line (m). -->
+    <!-- <param name="~min_line_length" value="5" />     Lines shorter than this are not published (m).          -->
+    <!-- <param name="~min_range" value="0.3" />           Points closer than this are ignored (m)           -->
+    <!-- <param name="~max_range" value="1000.0" />        Points farther than this are ignored (m).            -->
+    <!-- <param name="~min_split_dist" value=".4" />        When performing "split" step of split and merge, a split between two points results when the two points are at least this far apart (m).            -->
+    <!-- <param name="~outlier_dist" value=".6" />          Points who are at least this distance from all their neighbours are considered outliers (m).          -->
+    <!-- <param name="~min_line_points" value="5" />       Lines with fewer points than this are not published.          -->
+
+
+  </node>
+</launch>
+
