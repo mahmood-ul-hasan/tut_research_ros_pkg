@@ -1,0 +1,54 @@
+<launch>
+
+  <!--Rviz   -->  
+  <node name="rviz_crane_Structure" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+  <node name="tf_to_path_motion_cap_sys_world_frame" pkg="tf_to_trajectory" type="odom_to_path.py">
+    <param name="frame_id" value="world"/>
+    <param name="topic_name" value="/odom_motion_cap_sys_world_frame"/>
+    <param name="out_topic_name" value="/odom_motion_cap_sys_world_frame_path"/>
+    <param name="append_rate" value="5"/>
+  </node>
+
+  
+  <node name="tf_to_path_real_sense" pkg="tf_to_trajectory" type="odom_to_path.py">
+    <param name="frame_id" value="world"/>
+    <param name="topic_name" value="/camera/odom/sample_world_frame"/>
+    <param name="out_topic_name" value="/camera/odom/sample_world_frame_path"/>
+    <param name="append_rate" value="5"/>
+  </node>
+
+
+  <node name="tf_to_path_odom_crane_structural_info" pkg="tf_to_trajectory" type="odom_to_path.py">
+    <param name="frame_id" value="world"/>
+    <param name="topic_name" value="/odom_crane_structural_info"/>
+    <param name="out_topic_name" value="/odom_crane_structural_info_path"/>
+    <param name="append_rate" value="5"/>
+  </node>
+
+
+  <node name="tf_to_path_odometry_vins_ekf" pkg="tf_to_trajectory" type="odom_to_path.py">
+    <param name="frame_id" value="world"/>
+    <param name="topic_name" value="/odometry/filtered"/>
+    <param name="out_topic_name" value="/odometry/filtered_path"/>
+    <param name="append_rate" value="5"/>
+  </node>
+
+
+
+  <node name="tf_to_path_odometry_vins" pkg="tf_to_trajectory" type="odom_to_path.py">
+    <param name="frame_id" value="world"/>
+    <param name="topic_name" value="/vins_estimator/odometry_world_frame"/>
+    <param name="out_topic_name" value="/vins_estimator/odometry_world_frame_path"/>
+    <param name="append_rate" value="5"/>
+  </node>
+
+
+
+
+
+</launch>
+
+
+
+

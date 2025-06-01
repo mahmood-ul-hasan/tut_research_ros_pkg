@@ -1,0 +1,5 @@
+Log file created at: 2024/02/15 17:24:23
+Running on machine: aisl2
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0215 17:24:23.635601 781432 imageSkyDetector.cpp:119] Start detecting images: /media/aisl2/aisl_data/catkin_ws/src/sky_detector/data/hd_test.png
+I0215 17:24:26.181686 781432 imageSkyDetector.cpp:142] Image: /media/aisl2/aisl_data/catkin_ws/src/sky_detector/data/hd_test.pngDetection completed

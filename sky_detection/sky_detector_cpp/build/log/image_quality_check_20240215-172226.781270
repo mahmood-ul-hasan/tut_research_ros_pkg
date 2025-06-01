@@ -1,0 +1,6 @@
+Log file created at: 2024/02/15 17:22:26
+Running on machine: aisl2
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0215 17:22:26.190178 781270 imageSkyDetector.cpp:158] Start batch extraction of sky areas
+I0215 17:22:26.190285 781270 imageSkyDetector.cpp:159] --- Image: --- Time consuming (s): ---
+I0215 17:22:26.190289 781270 imageSkyDetector.cpp:204] Batch extraction completed

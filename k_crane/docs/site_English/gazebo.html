@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Gazebo - Kobelco Crane Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Gazebo";
+    var mkdocs_page_input_path = "gazebo.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Kobelco Crane Project</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Kobelco Crane Project</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="control.html">Control</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="description.html">Description</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="gazebo.html">Gazebo</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#gazebo">Gazebo</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_1">Tutorial</a></li>
+        
+            <li><a class="toctree-l3" href="#tips">Tips</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kobelco Crane Project</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Gazebo</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="gazebo">Gazebo</h1>
+<p>This document describes how to use gazebo, a physics simulation.
+The crane in this simulator is equipped with an inertial sensor and a camera. These can be used from within the program.
+Crane can be controlled by using <code>k_crane_controle</code> in combination with this package.
+The crane can be controlled from time to time in the program, or the trajectory can be generated in advance and then executed.</p>
+<!--div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>現在，このシミュレータは開始時に任意の姿勢を取ることができない問題があります．
+単純に開発者がやり方がわかっていないだけなのですが．．．でも代替案を用意してあるので
+安心してください．</p>
+</div-->
+<h2 id="_1">Tutorial</h2>
+<h3 id="_2">How to launch the simulator</h3>
+<ol>
+<li>A bare simulator with no sensors installed</li>
+</ol>
+<pre><code>roslaunch k_crane_gazebo k_crane_gazebo.launch 
+</code></pre>
+
+<ol>
+<li>Simulator equipped with camera, suspended load, and sensor</li>
+</ol>
+<pre><code>roslaunch k_crane_gazebo k_crane_with_payload.launch 
+</code></pre>
+
+<p>When adding a sensor such as a camera, refer to <code>k_crane_description/robots/k_crane_with_payload.urdf.xacro</code>.</p>
+<p><img alt="4" src="image/4.png" /></p>
+<h3 id="_3">Transition to initial state</h3>
+<pre><code>rosrun k_crane_control intial_state
+</code></pre>
+
+<p>A program that moves the crane to the specified initial state (turning angle, undulating angle).
+  Since the two angles have been directly written in the program, you need to compile each time you change them.</p>
+<h3 id="_4">Stop shaking</h3>
+<p>Program group that forcibly stops the sway of the rope</p>
+<ul>
+<li>joint12 (may nonsense)</li>
+</ul>
+<pre><code>rosrun k_crane_control initial_joint12
+</code></pre>
+
+<ul>
+<li>joint23 (may nonsense)</li>
+</ul>
+<pre><code>rosrun k_crane_control initial_joint23
+</code></pre>
+
+<ul>
+<li>joint 4 (may nonsense)</li>
+</ul>
+<pre><code>rosrun k_crane_control initial_joint4
+</code></pre>
+
+<h3 id="_5">Move the crane manually</h3>
+<p><img alt="5" src="image/5.png" /></p>
+<p>With gazebo started, start rqt to start the control board.</p>
+<pre><code>rqt
+</code></pre>
+
+<p>Set up the plugin.</p>
+<p>Plugins -&gt; Robot Tools -&gt; joint trajectory controller</p>
+<p>Set controller manager ns to <code>/k_crane/controller_manager</code> and controller to <code>k_crane_controller</code>.</p>
+<p>After setting, press the power button icon in the center and when it turns green, move the slide bar left and right to move the crane.</p>
+<h3 id="_6">Get camera image</h3>
+<p><img alt="6" src="image/6.png" /></p>
+<p>After performing <strong>Move the crane manually</strong>, you can acquire images from the camera installed on the crane by selecting Visulalization-&gt; Image View from Plugins of rqt and selecting <code>/front_camera/image_raw</code> topic. This camera can be set by changing the xacro file.</p>
+<h3 id="_7">Shake experimentally</h3>
+<ul>
+<li>Move to initial state</li>
+</ul>
+<pre><code>rosrun k_crane_control intial_state
+</code></pre>
+
+<ul>
+<li>Tilt the rope only 6 degrees</li>
+</ul>
+<pre><code>rosrun k_crane_control initial_joint_boom_pi 
+</code></pre>
+
+<ul>
+<li>Send Sano-sensei's vibration control trajectory (The trajectory seems to be tentative and does not work)</li>
+</ul>
+<pre><code> rosrun k_crane_control sano_joint_trajectory_action
+</code></pre>
+
+<ul>
+<li>Press the play button at the bottom of gazebo to start the simulator and send the damping trajectory</li>
+</ul>
+<h3 id="_8">Tools</h3>
+<ul>
+<li>suspend gazebo from within the program</li>
+</ul>
+<pre><code>rosrun k_crane_control pause_gazebo
+</code></pre>
+
+<ul>
+<li>Resuming a suspended gazebo from within the program</li>
+</ul>
+<pre><code>rosrun k_crane_control pause_gazebo
+</code></pre>
+
+<ul>
+<li>Convert velocity orbit to position orbit<br/>
+    <code>rosrun k_crane_control integral</code><br/>
+    Program to integrate velocity command into position command<br/>
+    The csv file to be integrated is specified in the program.<br/>
+    It is also necessary to specify the initial position in the program.<br/>
+    The sampling period is specified in the program and is currently 100Hz.</li>
+</ul>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>
+<p>base.urdf.xacro</p>
+<p>Elements inside the <strong>inertia</strong> tag cannot contain negative values. All must be positive values.
+  Otherwise, the robot will sink instead of colliding with the ground. In addition, the crane has a large mass and normally becomes 0 except for the diagonal components of the inertia tensor, but if it is 0, the behavior becomes strange.
+  Therefore, it was set to 100.</p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="description.html" class="btn btn-neutral" title="Description"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="description.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>

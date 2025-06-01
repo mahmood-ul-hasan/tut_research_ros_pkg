@@ -1,0 +1,24 @@
+<? xml version="1.0"?>
+<sdf version="1.6">
+	<world name="default">
+		<include>
+			<uri>model://ground_plane</uri>
+		</include>
+		<include>
+			<uri>model://sun</uri>
+		</include>
+
+		<physics type='ode'>
+			<max_contacts>100</max_contacts>
+			<max_step_size>0.01</max_step_size>
+			<ode>
+				<solver>
+					<iters>50</iters>
+					<type>quick</type>
+				</solver>
+			</ode>
+		</physics>
+
+	</world>
+</sdf>
+

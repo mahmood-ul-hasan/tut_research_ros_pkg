@@ -1,0 +1,79 @@
+	<!--
+	<link name="rope_link">
+		<visual>
+			<xacro:default_mesh name="rope"/>
+			<origin xyz="0 0 0" rpy="-1.57 0 0"/>
+			<material name="green"/>
+		</visual>
+		<collision>
+			<xacro:default_mesh name="rope"/>
+			<origin xyz="0 0 0" rpy="-1.57 0 0"/>
+		</collision>
+		<inertial>
+			<xacro:default_inertial/>
+			<origin xyz="0 0 0" rpy="-1.57 0 0"/>
+			<xacro:default_mesh name="rope"/>
+			<mass value="1"/>
+		</inertial>
+	</link>
+	-->
+
+	<!--
+	<link name="payload_link">
+		<visual>
+			<xacro:default_mesh name="payload"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="green"/>
+		</visual>
+		<collision>
+			<xacro:default_mesh name="payload"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</collision>
+		<inertial>
+			<xacro:default_inertial/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<xacro:default_mesh name="payload"/>
+			<mass value="100"/>
+		</inertial>
+	</link>
+	-->
+
+
+
+	<!--
+	<link name="ball_joint_x_link"/>
+
+	<joint name="ball_x_joint" type="revolute">
+		<origin xyz="14.13 0.2 22.6" rpy="0 0 0"/>
+		<parent link="boom_link"/>
+		<child  link="ball_joint_x_link"/>
+		<axis xyz="1 0 0"/>
+		<limit lower="-1.57" upper="1.57" effort="0" velocity="0"/>
+		<dynamics damping="0.005"/>
+	</joint>
+
+	<link name="ball_joint_y_link"/>
+
+	<joint name="ball_y_joint" type="revolute">
+		<parent link="ball_joint_x_link"/>
+		<child  link="ball_joint_y_link"/>
+		<axis xyz="0 1 0"/>
+		<limit lower="-1.57" upper="1.57" effort="0" velocity="0"/>
+		<dynamics damping="0.005"/>
+	</joint>
+
+	<joint name="ball_z_joint" type="revolute">
+		<parent link="ball_joint_y_link"/>
+		<child  link="rope_link"/>
+		<axis xyz="0 0 1"/>
+		<limit lower="-1.57" upper="1.57" effort="0" velocity="0"/>
+		<dynamics damping="0.005"/>
+	</joint>
+
+	<joint name="payload_joint" type="fixed">
+		<origin xyz="-0.5 -0.5 -20.5" rpy="0 0 0"/>
+		<parent link="rope_link"/>
+		<child  link="payload_link"/>
+	</joint>
+	-->
+

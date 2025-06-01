@@ -1,0 +1,29 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"base_link" [label="base_link"];
+"lower_link" [label="lower_link"];
+"upper_link" [label="upper_link"];
+"rope1_link" [label="rope1_link"];
+"rope2_link" [label="rope2_link"];
+"rope3_link" [label="rope3_link"];
+"rope4_link" [label="rope4_link"];
+"boom_link" [label="boom_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "fixed" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"fixed" -> "base_link"
+"base_link" -> "body_joint" [label="xyz: 0 0 1.5 \nrpy: 0 -0 0"]
+"body_joint" -> "lower_link"
+"lower_link" -> "yaw_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"yaw_joint" -> "upper_link"
+"upper_link" -> "joint_bool1" [label="xyz: 17.365 -0.0017 27.244 \nrpy: 0 -0 0"]
+"joint_bool1" -> "rope1_link"
+"rope1_link" -> "joint12" [label="xyz: 0 0 -0.1 \nrpy: 0 -0 0"]
+"joint12" -> "rope2_link"
+"rope2_link" -> "joint23" [label="xyz: 0 0 -0.1 \nrpy: 0 -0 0"]
+"joint23" -> "rope3_link"
+"rope3_link" -> "joint34" [label="xyz: 0 0 -3.5 \nrpy: 0 -0 0"]
+"joint34" -> "rope4_link"
+"upper_link" -> "pitch_joint" [label="xyz: 1.4 0.191 1.008 \nrpy: 0 -0 0"]
+"pitch_joint" -> "boom_link"
+}

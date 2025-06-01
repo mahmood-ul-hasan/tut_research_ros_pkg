@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+
+   <!-- Set the path to your CSV file as a ROS parameter -->
+  <!-- <arg name="csv_file_path" default="/home/aisl2/catkin_ws/src/data/model_crane_data/23_10_13_model_crane_data_to_comapre_different_methods_with_ground_truth/random_2_quaternion.csv"/>
+  <param name="csv_file_path" type="string" value="$(arg csv_file_path)"/> -->
+
+  
+  <!-- Launch your Python script -->
+  <!-- <node name="odometry_publisher_node" pkg="trajectory_analysis" type="odometry_publisher_from_csv_file.py" output="screen">
+    <param name="csv_file_path" value="$(arg csv_file_path)"/>
+  </node> -->
+
+
+  <!-- Launch tf2 broadcaster by IMU for crane structure -->
+  <!-- <node name="tf2_broadcaster_by_imu" pkg="trajectory_analysis" type="tf2_broadcaster_by_imu_crane_structure_using_quat.py" output="screen" /> -->
+  <!-- <node name="tf2_broadcaster_by_imu" pkg="trajectory_analysis" type="tf2_broadcaster_by_imu_crane_structure_using_quat_kobelco_2022.py" output="screen" /> -->
+  <node name="tf2_broadcaster_by_imu" pkg="trajectory_analysis" type="tf2_broadcaster_kobelco_2022_real_sense.py" output="screen" />
+
+
+
+  <!-- Launch odom crane structural info republisher in world frame -->
+  <node name="odom_crane_structural_info_republisher" pkg="trajectory_analysis" type="odom_crane_structural_info_republisher_in_world_frame_using_quat.py" output="screen" />
+
+  <!-- Launch odom motion capture system republisher in world frame -->
+  <!-- <node name="odom_motion_cap_sys_republisher" pkg="trajectory_analysis" type="odom_motion_cap_sys_republisher_in_world_frame_using_quat.py" output="screen" /> -->
+
+  <!-- Launch VINS/odom real sense republisher in world frame -->
+  <node name="odom_real_sense_republisher_in_world_frame_using_quat" pkg="trajectory_analysis" type="odom_real_sense_republisher_in_world_frame_using_quat.py" output="screen" />
+
+  <!-- Launch odom VINS republisher in world frame -->
+  <node name="odom_vins_republisher" pkg="trajectory_analysis" type="odom_vins_republisher_in_world_frame_using_quat.py" output="screen" />
+
+
+
+
+  <include file="$(find tf_to_trajectory)/launch/vins_odom_to_path.launch" />
+
+  <!-- <include file="$(find robot_localization)/launch/ekf_real_sense.launch" /> -->
+
+  <!-- <include file="$(find vins_estimator)/launch/crane_realsense_fisheye_t265.launch" /> -->
+
+</launch>
+

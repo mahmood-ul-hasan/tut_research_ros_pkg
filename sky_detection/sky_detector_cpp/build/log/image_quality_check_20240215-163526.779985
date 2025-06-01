@@ -1,0 +1,6 @@
+Log file created at: 2024/02/15 16:35:26
+Running on machine: aisl2
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0215 16:35:26.760529 779985 imageSkyDetector.cpp:149] 开始批量提取天空区域
+I0215 16:35:26.760612 779985 imageSkyDetector.cpp:150] --- 图像: --- 耗时(s): ---
+I0215 16:35:26.760615 779985 imageSkyDetector.cpp:193] 批量提取完毕
