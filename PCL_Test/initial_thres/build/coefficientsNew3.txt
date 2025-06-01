@@ -1,0 +1,8 @@
+﻿~/Dipankar/PCL_Test/simcorr_multi_wall/build/FinalPCDFiles/Iter1New3
+
+
+(0.0031146, -0.00900414, 0.999955, 7.10625); 	//coefficient for ground plane; file: new_pcl0.pcd
+
+(0.999982, 0.00603947, -0.000273997, 8.57089); 	//coefficient for wall plane 1; file: new_pcl1.pcd
+
+(0.00116524, -0.99998, 0.00614753, 10.9944); 	//coefficient for wall plane 2; file: new_pcl2.pcd

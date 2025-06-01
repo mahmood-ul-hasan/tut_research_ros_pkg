@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- run laserscan_to_pointcloud node -->
+    <node pkg="pointcloud_to_laserscan" type="laserscan_to_pointcloud_node" name="laserscan_to_pointcloud">
+        <!-- <remap from="scan_in" to="ld_lrs3611/scan_filtered"/>
+        <remap from="cloud" to="ld_lrs3611/scan_filtered_pc"/> -->
+        <remap from="scan_in" to="ld_lrs3611/scan"/>
+        <remap from="cloud" to="ld_lrs3611/scan_pc"/>
+
+        <!-- <param name="target_frame" value="world"/> Leave disabled to output pointcloud in scan frame -->
+        <param name="transform_tolerance" value="0.1"/>
+        <param name="concurrency_level" value="2"/> <!-- 0: Detect number of cores, 1: Single threaded, 2->inf: Parallelism level -->
+    </node>
+
+</launch>

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhdl_graph_slam.a  CMakeFiles/hdl_graph_slam.dir/src/hdl_graph_slam/graph_slam.cpp.o CMakeFiles/hdl_graph_slam.dir/src/hdl_graph_slam/information_matrix_calculator.cpp.o CMakeFiles/hdl_graph_slam.dir/src/g2o/robust_kernel_io.cpp.o CMakeFiles/hdl_graph_slam.dir/src/graph_optimization.cpp.o
+/usr/bin/ranlib libhdl_graph_slam.a
