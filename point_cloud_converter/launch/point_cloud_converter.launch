@@ -1,0 +1,10 @@
+<launch>
+	<node pkg="point_cloud_converter" name="point_cloud_converter" type="point_cloud_converter_node" >
+		<!-- <remap from="points_in" to="/laser_pointcloud_single2"/>
+		<remap from="points2_out" to="/laser_pointcloud_single" />  -->
+		
+		<remap from="points2_in" to="/laser_pointcloud_single2"/>
+		<remap from="points_out" to="/laser_pointcloud_single" />
+		
+	</node>
+</launch>

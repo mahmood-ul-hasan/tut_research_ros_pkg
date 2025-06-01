@@ -1,0 +1,281 @@
+rs-enumerate-devices -c
+Device info: 
+    Name                          : 	Intel RealSense T265
+    Serial Number                 : 	230322111292
+    Firmware Version              : 	0.2.0.951
+    Physical Port                 : 	2-9-23
+    Product Id                    : 	0B37
+    Usb Type Descriptor           : 	3.1
+    Product Line                  : 	T200
+
+Stream Profiles supported by Tracking Module
+ Supported modes:
+    stream       resolution      fps       format   
+    Fisheye 1	  848x800	@ 30Hz	   Y8
+    Fisheye 2	  848x800	@ 30Hz	   Y8
+    Gyro	 N/A		@ 200Hz	   MOTION_XYZ32F
+    Accel	 N/A		@ 62Hz	   MOTION_XYZ32F
+    Pose	 N/A		@ 200Hz	   6DOF
+
+Intrinsic Parameters:
+
+ Intrinsic of "Fisheye 1" / 848x800 / {Y8}
+  Width:      	848
+  Height:     	800
+  PPX:        	427.286010742188
+  PPY:        	388.918914794922
+  Fx:         	285.521087646484
+  Fy:         	285.586303710938
+  Distortion: 	Kannala Brandt4
+  Coeffs:     	-0.0123622203245759  	0.0516598783433437  	-0.0478819496929646  	0.00937241967767477  	0  
+  FOV (deg):  	112.1 x 108.9
+
+ Intrinsic of "Fisheye 2" / 848x800 / {Y8}
+  Width:      	848
+  Height:     	800
+  PPX:        	430.209594726562
+  PPY:        	391.652191162109
+  Fx:         	285.348602294922
+  Fy:         	285.402313232422
+  Distortion: 	Kannala Brandt4
+  Coeffs:     	-0.0105071403086185  	0.0482190288603306  	-0.0452298112213612  	0.00858183670789003  	0  
+  FOV (deg):  	112.1 x 109
+
+Motion Intrinsic Parameters:
+
+Motion Intrinsic of "Gyro"	  MOTION_XYZ32F
+Bias Variances: 	0.000000499999999  0.000000499999999  0.000000499999999  
+Noise Variances: 	0.000005148030141  0.000005148030141  0.000005148030141  
+Sensitivity : 
+     0.996938       0.000000       0.000000       0.004146  
+     0.000000       1.001616       0.000000      -0.003364  
+     0.000000       0.000000       1.000102      -0.001128  
+
+
+Motion Intrinsic of "Accel"	  MOTION_XYZ32F
+Bias Variances: 	0.000099999997474  0.000099999997474  0.000099999997474  
+Noise Variances: 	0.000066952452471  0.000066952452471  0.000066952452471  
+Sensitivity : 
+     1.005074       0.000000       0.000000      -0.226623  
+     0.000000       1.033638       0.000000       0.079630  
+     0.000000       0.000000       1.014103      -0.310006  
+
+
+
+Extrinsic Parameters:
+Extrinsic from "Fisheye 1"	  To	  "Fisheye 1" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+
+Extrinsic from "Fisheye 1"	  To	  "Fisheye 2" :
+ Rotation Matrix:
+   0.999981        -0.0032614       -0.00514241    
+   0.00325042       0.999992        -0.00214176    
+   0.00514936       0.002125         0.999985      
+
+ Translation Vector: -0.0639404505491257  -0.000282746041193604  -2.30678560910746e-05  
+
+Extrinsic from "Fisheye 1"	  To	  "Gyro" :
+ Rotation Matrix:
+  -0.999955        -0.00442284       0.00839241    
+   0.00445396      -0.999983         0.00369317    
+   0.00837594       0.00373039       0.999958      
+
+ Translation Vector: 0.0106995217502117  -4.76573259220459e-05  -8.9622539235279e-05  
+
+Extrinsic from "Fisheye 1"	  To	  "Gyro" using 4x4 matrix:
+T_cam_imu:
+    - [  -0.999955,        -0.00442284 ,      0.00839241    , 0.0106995217502117 ]
+    - [   0.00445396,      -0.999983 ,        0.00369317    ,  -4.76573259220459e-05]
+    - [   0.00837594,       0.00373039 ,      0.999958      , -8.9622539235279e-05]
+    - [0.0, 0.0, 0.0, 1.0]
+
+
+Extrinsic from "Fisheye 1"	  To	  "Accel" :
+ Rotation Matrix:
+  -0.999955        -0.00442284       0.00839241    
+   0.00445396      -0.999983         0.00369317    
+   0.00837594       0.00373039       0.999958      
+
+ Translation Vector: 0.0106995217502117  -4.76573259220459e-05  -8.9622539235279e-05  
+
+Extrinsic from "Fisheye 1"	  To	  "Pose" :
+ Rotation Matrix:
+   0.999955         0.00442284      -0.00839241    
+   0.00445396      -0.999983         0.00369317    
+  -0.00837594      -0.00373039      -0.999958      
+
+ Translation Vector: -0.0319701656699181  -0.000104699705843814  0.000114751768705901  
+
+Extrinsic from "Fisheye 2"	  To	  "Fisheye 1" :
+ Rotation Matrix:
+   0.999981         0.00325042       0.00514936    
+  -0.0032614        0.999992         0.002125      
+  -0.00514241      -0.00214176       0.999985      
+
+ Translation Vector: 0.0639403089880943  7.42577394703403e-05  -0.000306346453726292  
+
+Extrinsic from "Fisheye 2"	  To	  "Fisheye 2" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+
+Extrinsic from "Fisheye 2"	  To	  "Gyro" :
+ Rotation Matrix:
+  -0.999965        -0.00769105       0.00323376    
+   0.00769622      -0.999969         0.00159108    
+   0.00322142       0.00161591       0.999994      
+
+ Translation Vector: -0.0532408095896244  0.000161742093041539  0.000139880998176523  
+
+Extrinsic from "Fisheye 2"	  To	  "Gyro" using 4x4 matrix:
+T_cam_imu:
+    - [  0.999965,        -0.00769105,       0.00323376    , -0.0532408095896244 ]
+    - [  0.00769622,      -0.999969,         0.00159108    ,  0.000161742093041539]
+    - [  0.00322142,       0.00161591,       0.999994           , 0.000139880998176523]
+    - [0.0, 0.0, 0.0, 1.0]
+
+
+Extrinsic from "Fisheye 2"	  To	  "Accel" :
+ Rotation Matrix:
+  -0.999965        -0.00769105       0.00323376    
+   0.00769622      -0.999969         0.00159108    
+   0.00322142       0.00161591       0.999994      
+
+ Translation Vector: -0.0532408095896244  0.000161742093041539  0.000139880998176523  
+
+Extrinsic from "Fisheye 2"	  To	  "Pose" :
+ Rotation Matrix:
+   0.999965         0.00769105      -0.00323376    
+   0.00769622      -0.999969         0.00159108    
+  -0.00322142      -0.00161591      -0.999994      
+
+ Translation Vector: 0.0319701656699181  0.000104699713119771  -0.000114751768705901  
+
+Extrinsic from "Gyro"	  To	  "Fisheye 1" :
+ Rotation Matrix:
+  -0.999955         0.00445396       0.00837594    
+  -0.00442284      -0.999983         0.00373039    
+   0.00839241       0.00369317       0.999958      
+
+ Translation Vector: 0.0107000041753054  3.63797880709171e-12  -4.36557456851006e-11  
+
+Extrinsic from "Gyro"	  To	  "Fisheye 2" :
+ Rotation Matrix:
+  -0.999965         0.00769622       0.00322142    
+  -0.00769105      -0.999969         0.00161591    
+   0.00323376       0.00159108       0.999994      
+
+ Translation Vector: -0.0532406494021416  -0.00024796649813652  3.20302970067132e-05  
+
+Extrinsic from "Gyro"	  To	  "Gyro" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+
+Extrinsic from "Gyro"	  To	  "Accel" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: -0  -0  -0  
+
+Extrinsic from "Gyro"	  To	  "Pose" :
+ Rotation Matrix:
+  -1  -0  -0
+   0   1   0
+  -0  -0  -1
+
+ Translation Vector: -0.0212706439197063  -5.70423799217679e-05  2.51292294706218e-05  
+
+Extrinsic from "Accel"	  To	  "Fisheye 1" :
+ Rotation Matrix:
+  -0.999955         0.00445396       0.00837594    
+  -0.00442284      -0.999983         0.00373039    
+   0.00839241       0.00369317       0.999958      
+
+ Translation Vector: 0.0107000041753054  3.63797880709171e-12  -4.36557456851006e-11  
+
+Extrinsic from "Accel"	  To	  "Fisheye 2" :
+ Rotation Matrix:
+  -0.999965         0.00769622       0.00322142    
+  -0.00769105      -0.999969         0.00161591    
+   0.00323376       0.00159108       0.999994      
+
+ Translation Vector: -0.0532406494021416  -0.00024796649813652  3.20302970067132e-05  
+
+Extrinsic from "Accel"	  To	  "Gyro" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+
+Extrinsic from "Accel"	  To	  "Accel" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+
+Extrinsic from "Accel"	  To	  "Pose" :
+ Rotation Matrix:
+  -1  -0  -0
+   0   1   0
+  -0  -0  -1
+
+ Translation Vector: -0.0212706439197063  -5.70423799217679e-05  2.51292294706218e-05  
+
+Extrinsic from "Pose"	  To	  "Fisheye 1" :
+ Rotation Matrix:
+   0.999955         0.00445396      -0.00837594    
+   0.00442284      -0.999983        -0.00373039    
+  -0.00839241       0.00369317      -0.999958      
+
+ Translation Vector: 0.0319701544940472  3.7128873373149e-05  -0.000153173226863146  
+
+Extrinsic from "Pose"	  To	  "Fisheye 2" :
+ Rotation Matrix:
+   0.999965         0.00769622      -0.00322142    
+   0.00769105      -0.999969        -0.00161591    
+  -0.00323376       0.00159108      -0.999994      
+
+ Translation Vector: -0.0319702252745628  -0.000141373006044887  -1.15339280455373e-05  
+
+Extrinsic from "Pose"	  To	  "Gyro" :
+ Rotation Matrix:
+  -1   0  -0
+  -0   1  -0
+  -0   0  -1
+
+ Translation Vector: -0.0212706439197063  5.70423799217679e-05  2.51292294706218e-05  
+
+Extrinsic from "Pose"	  To	  "Accel" :
+ Rotation Matrix:
+  -1   0  -0
+  -0   1  -0
+  -0   0  -1
+
+ Translation Vector: -0.0212706439197063  5.70423799217679e-05  2.51292294706218e-05  
+
+Extrinsic from "Pose"	  To	  "Pose" :
+ Rotation Matrix:
+   1   0   0
+   0   1   0
+   0   0   1
+
+ Translation Vector: 0  0  0  
+

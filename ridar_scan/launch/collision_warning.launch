@@ -1,0 +1,9 @@
+<launch>
+
+    <node pkg="ridar_scan" type="collision_warning" name="collision_warning" output="screen" >
+        <param name="will_pablishing_cloud" value="true" />
+        <param name="length_correction" value="-2.2" />
+        <param name="warning_threshold" value="1" />
+    </node>
+
+</launch>

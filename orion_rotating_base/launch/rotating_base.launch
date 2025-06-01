@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="orion_rotating_base" name="orion_rotating_base" type="rotating_base_node" output="screen">
+  </node>
+</launch>
