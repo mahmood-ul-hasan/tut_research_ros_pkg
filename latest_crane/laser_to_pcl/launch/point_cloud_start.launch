@@ -1,0 +1,28 @@
+<launch>
+ 
+  <!--Node to convert the laser scan to point cloud-->
+  <node type="laser2pointcloud.py" pkg="laser_to_pcl"  name="laser2pointcloud"/>  
+
+  <!--Node to convert the PointCloud2 to PointCloud1-->
+  <node pkg="point_cloud_converter" name="point_cloud_converter" type="point_cloud_converter_node" >
+		<!-- <remap from="points_in" to="/laser_pointcloud_single2"/>
+		<remap from="points2_out" to="/laser_pointcloud_single" />  -->
+		
+		<remap from="points2_in" to="/laser_pointcloud_single2"/>
+		<remap from="points_out" to="/laser_pointcloud_single" />
+
+  </node>
+
+  <!--Node to assemble all the PointCloud1 using laser assembler-->
+  <node type="point_cloud_assembler" pkg="laser_assembler" name="my_assembler">
+  <remap from="cloud" to="laser_pointcloud_single"/>
+  <param name="max_clouds" type="int" value="1000" />
+  <param name="fixed_frame" type="string" value="front_laser" />
+</node>
+  <node type="LaserAssembler2.py" pkg="laser_to_pcl"  name="LaserAssembler" output="screen"/>  
+
+</launch>
+
+
+
+

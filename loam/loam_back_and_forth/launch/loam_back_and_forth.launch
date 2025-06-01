@@ -1,0 +1,18 @@
+<launch>
+
+
+
+
+  <node pkg="loam_back_and_forth" type="scanRegistration_bf" name="scanRegistration_bf" output="screen" required="true"/>
+  <!-- <remap from="/sync_scan_cloud_filtered" to="/front_laser_link/scan"/> -->
+
+
+  <node pkg="loam_back_and_forth" type="laserOdometry_bf" name="laserOdometry_bf" output="screen" required="true" />
+  
+  <!-- <node pkg="loam_back_and_forth" type="laserMapping_bf" name="laserMapping_bf" output="screen" required="true" />
+
+  <node pkg="loam_back_and_forth" type="transformMaintenance_bf" name="transformMaintenance_bf" output="screen" required="true"/> -->
+
+  <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz2" args="-d $(find loam_back_and_forth)/rviz_cfg/loam_back_and_forth.rviz"/>
+
+</launch>

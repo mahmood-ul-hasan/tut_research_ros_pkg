@@ -1,0 +1,39 @@
+<launch>
+
+
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Run rotating_base_node -->
+    <!-- <include file="$(find orion_rotating_base)/launch/rotating_base.launch" /> -->
+
+
+ <!-- <node type="tf2_broadcaster_by_imu_exp_real_crane.py" pkg="laser_to_pcl"  name="tf2_broadcaster_by_imu_exp_real_crane" />   -->
+
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler">
+        <remap from="scan" to="/scan_filtered"/>
+        <param name="max_scans" type="int" value="4000" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+
+  <!-- <node type="LaserAssembler_exp_real_crane.py" pkg="laser_to_pcl"  name="LaserAssembler_exp_real_crane" />   -->
+
+
+  <!--Rviz   -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint.launch"/>
+
+
+   
+
+
+
+</launch>
+
+
+
+

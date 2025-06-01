@@ -1,0 +1,38 @@
+<launch>
+
+<!--
+  <param name = "use_sim_time" value = "true" /> <node pkg = "laser_assembler" name = "my_assembler_optimize" />
+  <param name = "use_sim_time" value = "true" /> <node pkg = "laser_to_pcl" name = "LaserAssembler_exp" />    -->
+    <!-- Run rotating_base_node 
+    <include file="$(find orion_rotating_base)/launch/rotating_base.launch" />-->
+
+  <param name="use_sim_time" value="true"/>
+
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler_optimize">
+        <param name = "use_sim_time" value = "true" />
+        <remap from="scan" to="/scan"/>
+        <param name="max_scans" type="int" value="12000" />
+        <!-- <param name="fixed_frame" type="string" value="world" /> -->
+        <param name="fixed_frame" type="string" value="camera_odom_frame" />
+        
+        
+  </node>
+  <node type="LaserAssembler_exp.py" pkg="laser_to_pcl"  name="LaserAssembler_exp" output="screen"> 
+     <param name = "use_sim_time" value = "true" /> 
+  </node>
+
+  <!--Rviz   -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp_bag.rviz"/>
+
+
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint.launch"/>
+
+
+</launch>
+
+
+
+

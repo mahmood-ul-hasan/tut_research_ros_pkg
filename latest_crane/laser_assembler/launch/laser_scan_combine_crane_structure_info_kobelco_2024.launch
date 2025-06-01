@@ -1,0 +1,50 @@
+<launch>
+
+
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Run rotating_base_node -->
+    <!-- <include file="$(find orion_rotating_base)/launch/rotating_base.launch" /> -->
+<include file="$(find laser_filters)/examples/angle_filter_kobelo_2024.launch"/>
+
+
+ <node type="LaserAssembler.py" pkg="laser_assembler"  name="LaserAssembler" output="screen" />  
+
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler" output="screen" >
+        <!-- <remap from="scan" to="/velodyne_scan"/> -->
+      <remap from="scan" to="/velodyne_scan_filtered"/>
+        <param name="max_scans" type="int" value="7000" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+
+
+  <!--Rviz   -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+
+      <!-- <node type="tf2_broadcaster_kobelco_2024.py" pkg="laser_to_pcl"  name="tf2_broadcaster_kobelco_2024"  output="screen" required="true"/>   -->
+
+
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint.launch"/>
+
+
+
+  <node name="odom_crane_structural_info_republisher" pkg="trajectory_analysis" type="odom_crane_structural_info_republisher_in_world_frame_kobelco_2024.py" output="screen" />
+
+   
+      <node name="tf_to_path_crane_info" pkg="tf_to_trajectory" type="tf_to_path.py" output="screen">
+            <param name="parent_frame_id" value="world"/>
+            <param name="child_frame_id" value="crane_struct_info"/>
+            <param name="out_topic_name" value="/traj_by_crane_structure"/>
+            <param name="append_rate" value="5"/>
+      </node>
+
+
+</launch>
+
+
+
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<launch>
+  <node name="rvizvisualisation" pkg="rviz" type="rviz" args="-d $(find rovio)/cfg/rviz.rviz" />
+
+  <node pkg="rovio" type="rovio_node" name="rovio" output="screen">
+  <param name="filter_config" value="$(find rovio)/cfg/rovio_optor_test.info"/>
+  <param name="camera0_config" value="$(find rovio)/cfg/rovio_optor_camt.yaml"/>
+   <remap from="/cam0/image_raw" to="/camera/left/image_raw"/>
+  <!-- <remap from="/imu0" to="/imu0"/> -->
+  </node>
+
+
+
+    <node name="tf_to_path" pkg="tf_to_trajectory" type="tf_to_path.py">
+    <param name="parent_frame_id" value="world"/>
+    <param name="child_frame_id" value="imu"/>
+    <param name="out_topic_name" value="/trajectory"/>
+    <param name="append_rate" value="5"/>
+  </node>
+</launch>

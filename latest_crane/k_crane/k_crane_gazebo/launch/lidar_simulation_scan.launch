@@ -1,0 +1,27 @@
+<launch>
+	<arg name="ldlrs_model" default="$(find lrs_orion_simulator)/xacro/dtw_laser_staticfalse.xacro" />
+	 <!--<arg name="rvizconfig" default="$(find lrs_orion_simulator)/rviz/dtw_sensor.rviz" />  -->
+	<param name="ldlrs_description" command="$(find xacro)/xacro $(arg ldlrs_model) --inorder"/>
+
+
+
+
+
+	<!-- we create empty world, changing only the name of the world to be launch -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<!--arg name="world_name" value="$(find k_crane_gazebo)/worlds/sim.world"/-->
+		<!-- <arg name="world_name" default="$(find k_crane_gazebo)/worlds/world_with_wall.world"/>  -->
+		<arg name="paused" default="true"/>
+		<arg name="use_sim_time" default="true"/>
+		<arg name="recording" default="false"/>
+		<arg name="debug" default="false"/>
+		<!--arg name="physics" value="bullet"/-->
+	</include>
+
+	<!-- run a python script to send a service-call to gazebo_ros to spawn URDF of k_crane -->
+
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param ldlrs_description -urdf -model dtw_robot -x 0 -y -10 -z 0" />
+
+
+
+</launch>

@@ -1,0 +1,17 @@
+<launch>
+  <node name="usb_cam_elp" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video1" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />    
+    <!-- <param name="image_width" value="640" />
+    <param name="image_height" value="480" /> -->
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam_elp" />
+    <param name="io_method" value="mmap"/>
+    <param name="camera_info_url" value="file:///home/aisl/catkin_ws/src/vins/usb_cam-develop/elp_calibration_parammeter.yml"/>
+  </node>
+  <node name="image_view_elp" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam_elp/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+</launch>

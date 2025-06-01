@@ -1,0 +1,38 @@
+# Parameters for the model_crane environment
+
+# Add the file_directory of input poitcloud folder 
+file_directory: /media/aisl2/aisl_data/catkin_ws/src/latest_crane/map_optimization/input_pointcloud_data/kobelcko_exp_environment/
+number_of_wall_planes: 3
+number_of_ground_planes: 1
+
+num_iteration: 50
+
+
+
+# A lower covariance matrix, typically indicates lower uncertainty 
+# Information Matrix = 1 / Covariance Matrix
+# A higher information matrix indicates lower uncertainty
+
+
+floor_edge_stddev:  .000000002
+floor_edge_stddev2: .00000002
+floor_edge_stddev3: .000000000002
+floor_edge_stddev4: .000000000002
+
+wall_edge_stddev1: .0000000002
+wall_edge_stddev2:  .0000002
+wall_edge_stddev3: .2
+wall_edge_stddev4: 200
+wall_edge_stddev5: 200
+plane_to_plane_edge_stddev: 2000
+parallel_edge_stddev:  0.002
+
+
+# parameters for Pose Node. 
+# lower the stddev value > lower the 
+const_stddev_x: 4
+const_stddev_y: 4
+const_stddev_z: 4
+const_stddev_q1: 400
+const_stddev_q2: .00004
+const_stddev_q3: .000004

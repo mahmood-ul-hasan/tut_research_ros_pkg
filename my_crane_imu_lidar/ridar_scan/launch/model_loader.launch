@@ -1,0 +1,21 @@
+<launch>
+    <arg name="scanlist" default="$(find ridar_scan)/scans/scanlist.txt" />
+    <param name="ref_normalization" value="true" />
+    <param name="ref_min" value="300" />
+    <param name="ref_max" value="900" />
+    <param name="save_ply" value="true" />
+    <param name="mesh_thresh" value="0.3" />
+
+
+    <!-- Run model_loader node -->
+    <node name="model_loader" pkg="ridar_scan" type="model_loader" clear_params="true" output="screen" args="$(arg scanlist)">
+    </node>
+
+
+
+    <!-- ########################## For debugging ########################## -->
+
+    <!-- <node name="rqt_console" pkg="rqt_console" type="rqt_console" /> -->
+    <!-- <node name="rqt_logger_level" pkg="rqt_logger_level" type="rqt_logger_level" /> -->
+
+</launch>

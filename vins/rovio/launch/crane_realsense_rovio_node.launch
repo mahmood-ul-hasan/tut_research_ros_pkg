@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<launch>
+  <node name="rvizvisualisation" pkg="rviz" type="rviz" args="-d $(find rovio)/cfg/rviz.rviz" />
+
+  <node pkg="rovio" type="rovio_node" name="rovio" output="screen">
+    <remap from="/cam0/image_raw" to="/camera/fisheye1/image_raw"  />
+    <remap from="/cam1/image_raw" to="/camera/fisheye2/image_raw" />
+    <!-- <remap from="/camera/imu" to="/imu0" /> -->
+    <remap from="/imu0" to="/camera/imu" />
+
+    <param name="filter_config" value="$(find rovio)/cfg/realsense_rovio.info"/>
+    <param name="camera0_config" value="$(find rovio)/cfg/realsense_cam0.yaml"/>
+    <!-- <param name="camera1_config" value="$(find rovio)/cfg/euroc_cam1.yaml"/> -->
+  </node>
+
+  <node name="tf_to_path" pkg="tf_to_trajectory" type="tf_to_path.py">
+    <param name="parent_frame_id" value="world"/>
+    <param name="child_frame_id" value="imu"/>
+    <param name="out_topic_name" value="/trajectory1"/>
+    <param name="append_rate" value="5"/>
+  </node>
+</launch>

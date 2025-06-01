@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpre_process.a  CMakeFiles/pre_process.dir/src/pre_processing.cpp.o CMakeFiles/pre_process.dir/src/key_index.cpp.o
+/usr/bin/ranlib libpre_process.a

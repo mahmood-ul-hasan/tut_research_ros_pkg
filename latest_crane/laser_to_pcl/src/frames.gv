@@ -1,0 +1,18 @@
+digraph G {
+"world" -> "camera_odom_frame"[label=" Broadcaster: /gt_odom_republisher_in_world_frame_quat\nAverage rate: 99.527\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"world" -> "odom_mot_cap_sys"[label=" Broadcaster: /motion_cap_sys_republisher_in_world_frame_using_quaternion\nAverage rate: 99.527\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"camera_pose_frame" -> "camera_imu_optical_frame"[label=" Broadcaster: /gt_odom_republisher_in_world_frame_quat\nAverage rate: 99.527\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"world" -> "camera_pose_frame"[label=" Broadcaster: /ekf_se\nAverage rate: 62.975\nBuffer length: 4.97\nMost recent transform: 1697180518.104\nOldest transform: 1697180513.133\n"];
+"world" -> "rotating_base_tajectory"[label=" Broadcaster: /combine_tf_frames_and_publish_odom_of_crane_structural\nAverage rate: 99.527\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"odom" -> "boom"[label=" Broadcaster: /tf2_broadcaster_by_imu_crane_structure\nAverage rate: 86.711\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"world" -> "odom"[label=" Broadcaster: /tf2_broadcaster_by_imu_crane_structure\nAverage rate: 86.711\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"boom" -> "rotaing_base"[label=" Broadcaster: /tf2_broadcaster_by_imu_crane_structure\nAverage rate: 86.31\nBuffer length: 4.994\nMost recent transform: 1697180518.131\nOldest transform: 1697180513.137\n"];
+"rotaing_base" -> "laser"[label=" Broadcaster: /tf2_broadcaster_by_imu_crane_structure\nAverage rate: 15.843\nBuffer length: 4.923\nMost recent transform: 1697180518.09\nOldest transform: 1697180513.167\n"];
+"world" -> "body"[label=" Broadcaster: /vins_estimator\nAverage rate: 10.685\nBuffer length: 4.867\nMost recent transform: 1697180517.973\nOldest transform: 1697180513.106\n"];
+"body" -> "camera"[label=" Broadcaster: /vins_estimator\nAverage rate: 10.685\nBuffer length: 4.867\nMost recent transform: 1697180517.973\nOldest transform: 1697180513.106\n"];
+"world" -> "vins_odom_world_frame"[label=" Broadcaster: /vins_odom_republisher_in_world_frame_using_quaternion\nAverage rate: 10.693\nBuffer length: 4.863\nMost recent transform: 1697180518.05\nOldest transform: 1697180513.187\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1697180518.14065"[ shape=plaintext ] ;
+}->"world";
+}

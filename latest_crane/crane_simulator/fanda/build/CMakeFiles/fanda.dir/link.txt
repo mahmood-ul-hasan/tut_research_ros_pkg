@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfanda.a  CMakeFiles/fanda.dir/src/File.cpp.o CMakeFiles/fanda.dir/src/String.cpp.o CMakeFiles/fanda.dir/src/Zip.cpp.o CMakeFiles/fanda.dir/src/Csv.cpp.o
+/usr/bin/ranlib libfanda.a

@@ -1,0 +1,57 @@
+<launch>
+    <param name="use_sim_time" value="true"/>
+
+<!-- First laser assembler node -->
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler_1" output="screen">
+      <remap from="scan" to="/ld_lrs3611/scan_filtered"/>
+      <param name="max_scans" type="int" value="8000"/>
+      <param name="fixed_frame" type="string" value="world"/>
+      <remap from="assemble_scans2" to="laser_assembler_1/assemble_scans2"/>
+  </node>
+
+  <!-- Second laser assembler node -->
+  <!-- <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler_2" output="screen">
+      <remap from="scan" to="/ld_lrs3611/scan_filtered_line"/>
+      <param name="max_scans" type="int" value="8000"/>
+      <param name="fixed_frame" type="string" value="world"/>
+      <remap from="assemble_scans2" to="laser_assembler_2/assemble_scans2"/>
+   </node> -->
+
+  <node type="point_cloud_assembler" pkg="laser_assembler" name="laser_assembler_2" output="screen">
+      <remap from="cloud" to="/ld_lrs3611/scan_filtered_line_cloud"/>
+      <param name="max_clouds" type="int" value="8000"/>
+      <param name="fixed_frame" type="string" value="world"/>
+      <remap from="assemble_scans2" to="laser_assembler_2/assemble_scans2"/>
+   </node>
+
+  <!-- <node type="point_cloud_assembler" pkg="laser_assembler" name="my_assembler">
+  <remap from="cloud" to="scan_history"/>
+  <param name="max_clouds" type="int" value="1000" />
+  <param name="fixed_frame" type="string" value="world" />
+</node> -->
+
+
+    <!-- RViz node (optional) -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+
+    <node type="tf2_broadcaster_kobelco_2024_real_sense.py" pkg="laser_to_pcl"  name="tf2_broadcaster_kobelco_2024_real_sense"  output="screen" required="true"/>  
+
+
+    <node name="tf_to_path_realsense" pkg="tf_to_trajectory" type="tf_to_path.py">
+        <param name="parent_frame_id" value="camera_odom_frame"/>
+        <param name="child_frame_id" value="camera_pose_frame"/>
+        <param name="out_topic_name" value="/traj_by_realsense"/>
+        <param name="append_rate" value="5"/>
+    </node>
+
+
+      <node name="tf_to_path_real_sense" pkg="tf_to_trajectory" type="odom_to_path.py">
+            <param name="frame_id" value="world"/>
+            <param name="topic_name" value="/camera/odom/sample"/>
+            <param name="out_topic_name" value="/camera/odom/sample_path"/>
+            <param name="append_rate" value="5"/>
+      </node>
+
+      
+</launch>

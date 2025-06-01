@@ -1,0 +1,6 @@
+Coefficient for Plane_0 is:
+0.000368251 0.0121554 0.999926 6.53556
+Coefficient for Plane_1 is:
+0.78436 0.620009 -0.0191889 122.63
+Coefficient for Plane_2 is:
+0.625604 -0.78014 -0.00092333 106.192

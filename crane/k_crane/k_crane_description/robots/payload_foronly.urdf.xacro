@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:macro name="payload_macro" params="parent">
+	<link name="rope1_link">
+		<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="joint_boom1" type="fixed"><!-- revolute-->
+		<parent link="${parent}"/>
+		<child  link="rope1_link"/>
+		<!-- don't change this tag. no relationshop between rope long-->
+		<origin xyz="0 0 0" rpy="0 0 0"/><!--0 ${-def_pitch + 0.06} 0-->
+		<!--origin xyz="31.5 0 -0.5" rpy="0 ${pi/4 + 0.06} 0"/--><!--0 ${-def_pitch + 0.06} 0-->
+		<!-- <limit upper="${pi/20}" lower="${pi/(-20)}" effort="0" velocity="0"/> -->
+		<axis xyz="1 0 0"/>
+	</joint>
+
+	<!-- <link name="cylinder_area_vis_link1">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<visual>
+            <transparency>1</transparency>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="16.0"/>
+			</geometry>
+		</visual>
+	</link>
+	<gazebo reference="cylinder_area_vis_link1">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis1" type="fixed">
+		<parent link="rope4_link"/>
+		<child  link="cylinder_area_vis_link1"/>
+		<origin xyz="0.0 0.0 -5.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+	<link name="cylinder_area_vis_link2">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<visual>
+            <transparency>1</transparency>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="0.1"/>
+			</geometry>
+		</visual>
+	</link>
+	<gazebo reference="cylinder_area_vis_link2">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis2" type="fixed">
+		<parent link="cylinder_area_vis_link1"/>
+		<child  link="cylinder_area_vis_link2"/>
+		<origin xyz="0.0 0.0 -8.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint> -->
+
+	<!-- <link name="cylinder_area_vis_link_old">
+		<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="5.0" length="23.0"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial>
+		<visual>
+            <transparency>1</transparency>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="5.0" length="23.0"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="5.0" length="23.0"/>
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="cylinder_area_vis_link">
+		<material>Gazebo/GreyTransparent</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis_old" type="fixed">
+		<parent link="${parent}"/>
+		<child  link="cylinder_area_vis_link_old"/>
+		<origin xyz="23.0 0 -8.5" rpy="0 ${3*pi/4} 0"/>
+		<limit upper="${pi/20}" lower="${pi/(-20)}" effort="0" velocity="0"/>
+		<axis xyz="1 0 0"/>
+	</joint> ->
+
+	<link name="cylinder_area_vis_link1">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<!- <inertial>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="2.0"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial> ->
+		<visual>
+            <transparency>1</transparency>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="4.0" length="16.0"/>
+			</geometry>
+		</visual>
+		<!- <collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.1" length="0.1"/>
+			</geometry>
+		</collision> ->
+	</link>
+	<gazebo reference="cylinder_area_vis_link1">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis1" type="fixed">
+		<parent link="rope4_link"/>
+		<child  link="cylinder_area_vis_link1"/>
+		<origin xyz="0.0 0.0 -5.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+	<link name="cylinder_area_vis_link2">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<!- <inertial>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="2.0"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial> ->
+		<visual>
+            <transparency>1</transparency>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="4.0" length="0.1"/>
+			</geometry>
+		</visual>
+		<!- <collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.1" length="0.1"/>
+			</geometry>
+		</collision> ->
+	</link>
+	<gazebo reference="cylinder_area_vis_link2">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis2" type="fixed">
+		<parent link="cylinder_area_vis_link1"/>
+		<child  link="cylinder_area_vis_link2"/>
+		<origin xyz="0.0 0.0 -8.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint-->
+
+	<link name="rope2_link">
+		<origin xyz="0 0 0" rpy="$0 0 0"/>
+		<inertial>
+			<origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="joint12" type="fixed"><!-- revolute-->
+		<parent link="rope1_link"/>
+		<child  link="rope2_link"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit upper="${2*pi/20}" lower="${pi/20}" effort="0" velocity="0"/>
+		<dynamics friction="5"/>
+	</joint>
+
+	<link name="rope3_link">
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertial>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.0001"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="0.0001"
+				iyz="0.0"
+				izz="0.0001"/>
+		</inertial>
+		<visual>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- previous : continuous -->
+	<joint name="joint23" type="fixed">
+		<parent link="rope2_link"/>
+		<child  link="rope3_link"/>
+		<dynamics friction="5"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<axis xyz="0 0 1"/>
+		<limit upper="${pi/2}" lower="${pi/(-2)}" effort="0" velocity="0"/>
+	</joint>
+
+	<link name="rope4_link">
+		<origin xyz="0 0 -14" rpy="0 0 0"/>
+		<inertial>
+			<geometry>
+				<!--26-1.357-0.757*2=23.121 is setted to put payload 3m on the ground-->
+				<!--26-5.357-0.757*2=19.629 is setted to put payload 3m on the ground-->
+				<cylinder radius="0.05" length="23.121"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="53.4580641"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="53.4580641"
+				iyz="0.0"
+				izz="53.4580641"/>
+		</inertial>
+		<visual>
+			<geometry>
+				<!--26-1.357-0.757*2=23.121 is setted to put payload 3m on the ground-->
+				<!--26-5.357-0.757*2=19.629 is setted to put payload 3m on the ground-->
+				<cylinder radius="0.05" length="23.121"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<!--26-1.357-0.757*2=23.121 is setted to put payload 3m on the ground-->
+				<!--26-5.357-0.757*2=19.629 is setted to put payload 3m on the ground-->
+				<cylinder radius="0.05" length="23.121"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="joint34" type="fixed">
+		<parent link="rope3_link"/>
+		<child  link="rope4_link"/>
+		<!--defolt coordinate is 0 0 -12.5-->
+		<!-- exp6 : -12.5 + 2.1 = 9.4 -->
+		<origin xyz="0 0 -11.5" rpy="0 0 0"/>
+		<limit upper="${pi/2}" lower="${pi/(-2)}" effort="0" velocity="100"/>
+	</joint>
+
+	<link name="payload_link">
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertial>
+			<geometry>
+				<!-- <box size="1 3.7 0.476"/> -->
+				<box size="1.5 4.0 1.5"/>
+			</geometry>
+			<mass value="2000"/>
+			<inertia
+				ixx="200.0"
+				ixy="0.0"
+				ixz="0.0"
+				iyy="200.0"
+				iyz="0.0"
+				izz="200.0"/>
+		</inertial>
+		<visual>
+			<geometry>
+				<!--box size="1 3.7 0.476"/-->
+				<box size="1.5 4.0 1.5"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<!--box size="1 3.7 0.476"/-->
+				<box size="1.5 4.0 1.5"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- previous : continuous -->
+	<joint name="joint4payload" type="fixed">
+		<parent link="rope4_link"/>
+		<child  link="payload_link"/>
+		<!-- -12.5 is a joint coordinate between rope and payload-->
+		<!-- in this setting, payload is 2.243m avobe the ground-->
+		<!-- exp6 : -11.743 + 2.2 = -9.543 -->
+		<origin xyz="0 0 -11.5" rpy="0 0 0"/>
+		<limit upper="${pi}" lower="${-pi}" effort="0" velocity="0"/>
+		<axis xyz="0 0 1"/>
+	</joint>
+</xacro:macro>
+</robot>

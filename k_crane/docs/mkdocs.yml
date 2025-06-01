@@ -1,0 +1,10 @@
+site_name: Kobelco Crane Project
+
+theme: readthedocs
+use_directory_urls: false
+
+markdown_extensions:
+    - admonition
+    - pymdownx.arithmatex
+    - pymdownx.details
+    - def_list

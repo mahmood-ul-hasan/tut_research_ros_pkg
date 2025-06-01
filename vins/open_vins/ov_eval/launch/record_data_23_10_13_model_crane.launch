@@ -1,0 +1,49 @@
+<launch>
+
+
+
+    <!-- where to save the recorded poses -->
+    <arg name="path_save"   default="/home/aisl2/catkin_ws/src/data/model_crane_data/23_10_13_model_crane_data_to_comapre_different_methods_with_ground_truth" />
+    <arg name="file_name"    default="random_3" />
+
+
+    <!-- record the trajectory Ground Truth -->
+    <node name="recorder_estimate_motion_cap_system" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/odom_motion_cap_sys_world_frame" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/truth/$(arg file_name)/trj_01.txt" />
+    </node>
+
+    <!-- record the trajectory Real sense -->
+    <node name="recorder_estimate_real_sense" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/camera/odom/sample_world_frame" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/real_sense/trj_01/real_sense.txt" />
+    </node>
+
+        <!-- record the trajectory Crane Structural info-->
+    <node name="recorder_estimate_crane_struture" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/odom_crane_structural_info" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/crane_info/trj_01/crane_info.txt" />
+    </node>
+
+     <!-- record the trajectory VINS + EKF-->
+    <node name="recorder_estimate_vins_ekf" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/odometry/filtered" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_ekf/trj_01/vins_ekf.txt" />
+   </node>
+
+ <!-- record the trajectory VINS -->
+    <node name="recorder_estimate_vins_mono" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/vins_estimator/odometry_world_frame" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_mono/trj_01/vins_mono.txt" />
+   </node>
+
+
+
+
+
+</launch>

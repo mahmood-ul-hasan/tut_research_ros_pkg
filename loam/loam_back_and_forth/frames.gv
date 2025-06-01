@@ -1,0 +1,7 @@
+digraph G {
+"camera" -> "front_laser_link"[label=" Broadcaster: /tf2_broadcaster_loam\nAverage rate: 49.8\nBuffer length: 5.0\nMost recent transform: 76345.5\nOldest transform: 76340.5\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 76345.5"[ shape=plaintext ] ;
+}->"camera";
+}

@@ -1,0 +1,8 @@
+<launch>
+
+    <node name="sequential_registration" pkg="pointcloud_registration" type="sequential_registration" output="screen" />
+
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pointcloud_registration)/rviz.rviz" output="screen" />
+</launch>
+

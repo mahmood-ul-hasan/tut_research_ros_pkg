@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- include common macro -->
+	<xacro:include filename="common.urdf.xacro"/>
+
+	<!-- base_link -->
+	<link name="base_link"/>
+
+	<!-- lower link -->
+	<link name="lower_link">
+		<visual>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="lower"/>
+		</visual>
+		<collision>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="lower"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="23141.64"
+				ixy="0.54"
+				ixz="4395.71"
+				iyy="24360.18"
+				iyz="5.63"
+				izz="1218.63"/>
+			<origin xyz="-0.1346 0.0 -0.7573" rpy="0 0 0"/>
+			<xacro:default_mesh name="lower"/>
+			<mass value="38882"/>
+		</inertial>
+	</link>
+
+	<joint name="body_joint" type="fixed">
+		<origin xyz="0 0 1.5" rpy="0 0 0"/>
+		<parent link="base_link"/>
+		<child  link="lower_link"/>
+	</joint>
+
+	<!-- upper link -->
+	<link name="upper_link">
+		<visual>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="upper"/>
+		</visual>
+		<collision>
+			<xacro:default_origin/>
+			<xacro:default_mesh name="upper"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="101881.52"
+				ixy="-50965.14"
+				ixz="-273528.32"
+				iyy="1007600.56"
+				iyz="12056.92"
+				izz="910589.22"/>
+			<origin xyz="-3.1369 0.1401 1.1322" rpy="0 0 0"/>
+			<xacro:default_mesh name="upper"/>
+			<mass value="77333"/>
+		</inertial>
+	</link>
+
+	<joint name="yaw_joint" type="revolute">
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<parent link="lower_link"/>
+		<child  link="upper_link"/>
+		<axis xyz="0 0 -1"/>
+		<friction frinction="0.05"/>
+		<limit lower="${-pi}" upper="${pi}" effort="100000000" velocity="10000"/>
+	</joint>
+	<xacro:default_transmission suffix="yaw_joint"/>
+
+
+	<link name="boom_link">
+		<visual>
+			<xacro:default_mesh name="boom"/>
+			<!--origin xyz="-1.4 -0.191 -1.008 " rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 -1.57"/>
+		</visual>
+		<collision>
+			<xacro:default_mesh name="boom"/>
+			<!--origin xyz="-1.4 -0.191 -1.008 " rpy="0 0 0"/-->
+			<origin xyz="0 0 0" rpy="0 0 -1.57"/>
+		</collision>
+		<inertial>
+			<inertia
+				ixx="3398809.65"
+				ixy="-2996.64"
+				ixz="18.45"
+				iyy="7038.42"
+				iyz="8974.74"
+				izz="3398634.48"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<!--origin xyz="8.39945 0.0136 14.54827" rpy="0 0 0"/-->
+			<xacro:default_mesh name="boom"/>
+			<mass value="8243"/>
+		</inertial>
+	</link>
+
+	<joint name="pitch_joint" type="revolute">
+		<origin xyz="1.4 0.191 1.008 " rpy="0 -0.76 0"/>
+		<parent  link="upper_link"/>
+		<child   link="boom_link"/>
+		<axis xyz="0 -1 0"/>
+		<friction frinction="0.05"/>
+		<!--<limit lower="0" upper="1.57" effort="100000000" velocity="10000"/>-->
+		<limit lower="-0.76" upper="0.81" effort="100000000" velocity="1000"/>
+	</joint>
+	<xacro:default_transmission suffix="pitch_joint"/>
+
+
+	<!-- link fixed in order to stand rigidly in gazebo -->
+	<link name="world"/>
+	<joint name="fixed" type="fixed">
+		<parent link="world"/>
+		<child  link="base_link"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+	</joint>
+
+</robot>

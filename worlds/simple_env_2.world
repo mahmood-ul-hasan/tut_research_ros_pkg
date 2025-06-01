@@ -1,0 +1,517 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+  
+    <scene>
+      <grid>false</grid>
+    </scene>
+  
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+      <pose>1.5 -30 100 0 0 0</pose>
+    </include>
+
+
+    <!-- <include>
+      <uri>model://my_ground_plane</uri>
+    </include> -->
+
+
+    <!-- <include>
+      <uri>model://grey_wall</uri>
+      <pose>-0 0 0 0 0 0</pose>
+      <size>75 2 2.8</size>
+    </include> -->
+
+    
+    
+    <include>
+      <uri>model://sand_island</uri>
+      <!-- <pose>200 -100 0 0 0 0</pose> -->
+    </include>
+
+
+
+  
+    
+
+    <!-- Houses prallel to Y axes -->
+    <include>
+      <uri>model://iris_stereo_gray_gps_6_aspect</uri>
+      <name>iris_stereo_gray_gps_6_aspect</name>
+      <pose>35 0 0 0 0 1.5708</pose>
+    </include>
+    
+    <include>
+      <uri>model://house_2</uri>
+      <name>house_2</name>
+      <pose>35 -20 0 0 0 1.5708</pose>
+    </include>
+
+      <!-- A gas station -->
+    <include>
+      <uri>model://gas_station</uri>
+      <pose>35 35 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://house_1</uri>
+      <name>house_3</name>
+      <pose>47 -10 0 0 0 1.5708</pose>
+    </include>
+    
+    <include>
+      <uri>model://house_2</uri>
+      <name>house_4</name>
+      <pose>47 5 0 0 0 1.5708</pose>
+    </include>
+    
+    <include>
+      <uri>model://house_3</uri>
+      <name>house_5</name>
+      <pose>47  35 0 0 0 1.5708</pose>
+    </include>
+
+
+
+
+    <include>
+      <uri>model://apartment</uri>
+      <pose>60 -50 0 0 0 0</pose>
+    </include>
+
+
+     <include>
+      <uri>model://fire_station</uri>
+      <pose>60 -20 0 0 0 1.5708</pose>
+    </include>
+
+
+    <include>
+      <uri>model://police_station</uri>
+      <pose> 60 1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://grocery_store</uri>
+      <pose>60 30 0 0 0 1.5708</pose>
+    </include>
+
+
+    <include>
+      <uri>model://post_office</uri>
+      <pose> 60  55 0 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <uri>model://thrift_shop</uri>
+      <pose>60 65 0 0 0 1.5708</pose>
+    </include>
+
+  
+
+
+    
+<!-- House prallel to x axes -->
+
+
+    <include>
+      <uri>model://house_1</uri>
+      <name>house_6</name>
+      <pose>15 35 0 0 0 0</pose>
+    </include>
+
+   <include>
+      <uri>model://house_3</uri>
+      <name>house_7</name>
+      <pose>-3  30 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://fast_food</uri>
+      <name>fast_food_1</name>
+      <pose>-20 35 0 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://house_1</uri>
+      <name>house_8</name>
+      <pose>-15 53 0 0 0 0</pose>
+    </include>
+
+   <include>
+      <uri>model://house_3</uri>
+      <name>house_9</name>
+      <pose>20 50 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://fast_food</uri>
+      <name>fast_food_2</name>
+      <pose>2  53 0 0 0 0</pose>
+    </include>
+
+
+ <!-- House prallel to x axes on negative side of y axes-->
+
+
+    <include>
+      <uri>model://powerplant</uri>
+      <pose>10 -70 0 0 0 0</pose>
+    </include>
+
+        
+    <include>
+      <uri>model://playground</uri>
+      <pose>-0 -40 0 0 0 0</pose>
+    </include>
+
+
+     <include>
+      <uri>model://school</uri>
+      <pose>17 -50 0 0 0 3.15</pose>
+    </include>
+
+
+     <include>
+      <uri>model://truss_bridge</uri>
+      <pose>10 -80 13 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <uri>model://office_building</uri>
+      <pose>-55 -60 0 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://collapsed_police_station</uri>
+      <pose>-35 -35 0 0 0 1.5708</pose>
+    </include>
+
+    <include>
+      <uri>model://collapsed_industrial</uri>
+      <pose>-55 -40 0 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://collapsed_fire_station</uri>
+      <pose>-45 50 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://osrf_first_office</uri>
+      <pose>-45 35 0 0 0 0</pose>
+    </include>
+
+
+
+
+    <include>
+      <uri>model://willowgarage</uri>
+      <pose>-30 15 0 0 0 3.15</pose>
+    </include>
+
+
+ 
+
+
+
+   <include>
+      <uri>model://speed_limit_sign</uri>
+      <pose>25 -25 0 0 0 0</pose>
+    </include>
+
+
+
+    <!-- Lamps on Motor way 01-->
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_1</name>
+      <pose>70 -25 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_2</name>
+      <pose>50 -35 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_3</name>
+      <pose>25 -25 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_4</name>
+      <pose>-25 -35 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_5</name>
+      <pose>-50 -25 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_6</name>
+      <pose>-75 -35 0 0 0 3.15</pose>
+    </include>
+
+
+    <!-- Lamps on Motor way 02-->
+
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_7</name>
+      <pose>70 15 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_8</name>
+      <pose>50 25 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_9</name>
+      <pose>25 15 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_10</name>
+      <pose>-25 25 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_11</name>
+      <pose>-50 15 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_12</name>
+      <pose>-75 25 0 0 0 0</pose>
+    </include>
+
+    <!-- Lamps on link road-->
+
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_13</name>
+      <pose>70 40 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_14</name>
+      <pose>50 50 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_15</name>
+      <pose>25 40 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_16</name>
+      <pose>-25 50 0 0 0 0</pose>
+    </include>
+   <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_17</name>
+      <pose>-50 40 0 0 0 3.15</pose>
+    </include>
+    <include>
+      <uri>model://lamp_post</uri>
+      <name>lamp_18</name>
+      <pose>-75 50 0 0 0 0</pose>
+    </include>
+    
+
+    
+    
+    <!-- Roads parrallel to x-axes-->
+    <road name="Motorway1">
+      <width>15</width>
+      <point>-77 -30 0.005</point>
+      <point>77 -30 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Motorway</name>
+        </script>
+      </material>
+    </road>
+
+
+    <road name="Motorway2">
+      <width>15</width>
+      <point>-77 20 0.005</point>
+      <point>77 20 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Motorway</name>
+        </script>
+      </material>
+    </road>
+
+    <road name="Residential">
+      <width>5</width>
+     <point>-77 45 0.005</point>
+      <point>77 45 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Residential</name>
+        </script>
+      </material>
+    </road>
+
+
+    <!-- Roads parrallel to y-axes-->
+
+
+
+  <road name="Primary">
+      <width>10</width>
+      <point>60 -80 0.005</point>
+      <point>60 80 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Primary</name>
+        </script>
+      </material>
+    </road>
+
+
+    <road name="Footway">
+      <width>3</width>
+      <point>25 -25 0.005</point>
+      <point>25 15 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Footway</name>
+        </script>
+      </material>
+    </road>
+ 
+  
+
+    <road name="Tertiary">
+      <width>5</width>
+      <point>15 -25 0.005</point>
+      <point>15 15 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Tertiary</name>
+        </script>
+      </material>
+    </road>
+
+    <road name="Trunk">
+      <width>5</width>
+      <point>-10 -25 0.005</point>
+      <point>-10 15 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Trunk</name>
+        </script>
+      </material>
+    </road>
+ 
+    <road name="Pedestrian">
+      <width>50</width>
+      <point>-55 -25 0.005</point>
+      <point>-55 15 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Pedestrian</name>
+        </script>
+      </material>
+    </road>
+    <!-- <road name="Steps">
+      <width>3</width>
+      <point>-38 92 0.005</point>
+      <point>92 -38 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Steps</name>
+        </script>
+      </material>
+    </road>  -->
+
+
+
+  <!-- 
+    <road name="Secondary">
+      <width>5</width>
+      <point>38 92 0.005</point>
+      <point>92 38 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Secondary</name>
+        </script>
+      </material>
+    </road>
+
+    <road name="Lane_1">
+      <width>2.5</width>
+      <point>92 38 0.005</point>
+      <point>-92 38 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Lane_1</name>
+        </script>
+      </material>
+    </road>
+    <road name="Lanes_2">
+      <width>5</width>
+      <point>92 38 0.005</point>
+      <point>92 -38 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Lanes_2</name>
+        </script>
+      </material>
+    </road>
+    <road name="Lanes_4">
+      <width>10</width>
+      <point>92 -38 0.005</point>
+      <point>38 -92 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Lanes_4</name>
+        </script>
+      </material>
+    </road>
+    <road name="Lanes_6">
+      <width>15</width>
+      <point>38 -92 0.005</point>
+      <point>-92 38 0.005</point>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Lanes_6</name>
+        </script>
+      </material>
+    </road>
+
+    -->
+    <!-- <road name="Default">
+      <width>5</width>
+      <point>38 92 0.005</point>
+      <point>-38 -92 0.005</point>
+    </road> -->
+    
+  </world>
+</sdf>

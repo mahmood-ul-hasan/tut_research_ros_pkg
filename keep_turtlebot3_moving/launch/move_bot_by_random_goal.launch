@@ -1,0 +1,9 @@
+<launch>
+    <!--Run move_bot_by_random_goal node -->
+    <node pkg="keep_turtlebot3_moving" type="move_bot_by_random_goal.py" name="move_bot_by_random_goal" output="screen">
+    </node>
+
+</launch>
+   
+  
+ 

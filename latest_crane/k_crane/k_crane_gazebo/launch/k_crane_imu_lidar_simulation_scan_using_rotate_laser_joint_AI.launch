@@ -1,0 +1,53 @@
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find k_crane_gazebo)/rviz/k_crane_imu_liadr_simulation_scan.rviz"/>  
+  
+  
+  
+   <group>
+	<!-- load robot_description of k_crane -->
+	    <remap from="/front_laser_link/scan" to="/aggggg"/>
+		<include file="$(find k_crane_description)/launch/k_crane_description_display_with_imu_lidar_using_rotate_joint_AI.launch"/>
+	</group>
+
+
+
+
+    <!--k_crane_description_display_with_imu_lidar_using_rotate_joint-->
+    <!-- we create empty world, changing only the name of the world to be launch -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<!--arg name="world_name" value="$(find k_crane_gazebo)/worlds/sim.world"/-->
+		<arg name="world_name" default="$(find k_crane_gazebo)/worlds/world_with_wall.world"/>  
+		<arg name="paused" default="true"/>
+		<arg name="use_sim_time" default="true"/>
+		<arg name="recording" default="false"/>
+		<!-- <arg name="debug" default="false"/> -->
+		<arg name="debug" value="true"/>
+		<!--arg name="physics" value="bullet"/-->
+	</include>
+
+
+	<!-- run a python script to send a service-call to gazebo_ros to spawn URDF of k_crane -->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model k_crane -param robot_description -J pitch_joint 1.0 -unpause"/>
+
+  
+	<!-- loads the controllers -->
+	<rosparam file="$(find k_crane_description)/config/rotating_laser_control.yaml" command="load" />
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/marvin" args="base_to_laser_joint_position_controller joint_state_controller --shutdown-timeout 3"/>
+    
+	
+	<!-- ros_control k_crane launch file -->
+	<include file="$(find k_crane_control)/launch/k_crane_control.launch"/>
+
+	<!-- to convert the laser scan to point cloud
+	<include file="$(find laser_to_pcl)/launch/point_cloud_start.launch"/>  -->
+	<!-- <include file="$(find laser_to_pcl)/launch/laser_scan_start.launch"/>   -->
+	<!-- <include file="$(find laser_to_pcl)/launch/laser_scan_start_optimize.launch"/> -->
+
+		 <!-- 
+-->
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />   -->
+
+
+
+</launch>

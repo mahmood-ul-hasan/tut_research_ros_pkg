@@ -1,0 +1,44 @@
+<launch>
+
+
+    <param name="use_sim_time" value="true"/>
+
+<include file="$(find laser_filters)/examples/angle_filter_kobelo_2024.launch"/>
+
+ <node type="LaserAssembler.py" pkg="laser_assembler"  name="LaserAssembler" output="screen" />  
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler" output="screen" >
+        <!-- <remap from="scan" to="/velodyne_scan"/> -->
+        <remap from="scan" to="/velodyne_scan_filtered"/>
+        <param name="max_scans" type="int" value="7000" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+
+  <!--Rviz   -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find laser_to_pcl)/rviz/exp.rviz"/>
+
+
+      <node type="tf2_broadcaster_kobelco_2024_real_sense.py" pkg="laser_to_pcl"  name="tf2_broadcaster_kobelco_2024_real_sense"  output="screen" required="true"/>  
+
+
+      <!-- <node name="tf_to_path_realsense" pkg="tf_to_trajectory" type="tf_to_path.py">
+            <param name="parent_frame_id" value="camera_odom_frame"/>
+            <param name="child_frame_id" value="camera_pose_frame"/>
+            <param name="out_topic_name" value="/traj_by_realsense"/>
+            <param name="append_rate" value="5"/>
+      </node>
+
+
+      <node name="tf_to_path_real_sense" pkg="tf_to_trajectory" type="odom_to_path.py">
+            <param name="frame_id" value="world"/>
+            <param name="topic_name" value="/camera/odom/sample"/>
+            <param name="out_topic_name" value="/camera/odom/sample_path"/>
+            <param name="append_rate" value="5"/>
+      </node> -->
+
+
+</launch>
+
+
+
+

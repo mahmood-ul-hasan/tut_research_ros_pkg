@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="k_crane.urdf.xacro"/>
+	<xacro:include filename="camera.urdf.xacro"/>
+	<!-- <xacro:include filename="imu_100.urdf.xacro"/>  -->
+	<xacro:include filename="imu_128_macro.urdf.xacro"/>
+
+  <!-- <xacro:include filename="payload.urdf.xacro"/>
+	<xacro:imu_128_macro prefix="imu_hook" parent="rope4_link" xyz = "0 0 -6.5" rpy="0 0 0"/> -->
+
+   <!--
+   <xacro:include filename="move_macro.xacro" />
+  <xacro:include filename="laser_macro.xacro" />
+
+   <link name="base_link"/>  
+
+  <xacro:body_macro parent="base_link" />
+  <xacro:laser_macro prefix="front_laser" parent="base_link" xyz="0 0 0.13" rpy="0 ${radians(90)} 0"/> 
+  -->
+   
+  <!-- 
+	Continuous joint  -->
+    <xacro:include filename="laser_move_macro.urdf.xacro"/>
+    <xacro:laser_move_macro prefix="front_laser" parent="boom_link" xyz="14.392 0 0" rpy="${radians(90)} 0 ${radians(180)}"/> 
+
+
+	<!-- <xacro:laser_move_macro prefix="front_laser" parent="upper_link" xyz = "0 0 12" rpy="0 ${radians(90)} 0"/>   -->
+
+
+		<!--<xacro:imu_128_macro prefix="imu_upper" parent="upper_link" xyz = "1.5 0 0" rpy="0 ${radians(0)} 0"/> 	-->
+	<!-- <xacro:imu_128_macro prefix="imu_boom" parent="boom_link" xyz = "1.5 0 0" rpy="0 ${radians(90)} 0"/> -->
+  <xacro:imu_128_macro prefix="imu_boom" parent="boom_link" xyz = "2.819 -0.537 0.21" rpy="-${radians(95)} -${radians(0)} 0"/>
+
+	<!--<xacro:camera_macro prefix="front_camera" parent="boom_link" xyz="2.563 -1.036 0.329"/> -->
+     
+</robot>
+

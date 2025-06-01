@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/aisl/ros/latest_crane_catkin_ws/devel/include/**",
+        "/home/aisl/catkin_ws/devel/include/**",
+        "/opt/ros/kinetic/include/**",
+        "/home/aisl/catkin_ws/src/laser_geometry/include/**",
+        "/home/aisl/catkin_ws/src/learning_tf2/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/lidar_simulation_environment/model_msg_to_rotbase_joint_msg/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/lidar_simulation_environment/move_lidar_sensor_model/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/orion_rotating_base/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/lidar_simulation_environment/pedestrian_in_simulator/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/pluginlib_tutorials_/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/pointcloud_integrator/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/ridar_scan/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/lidar_simulation_environment/shake_crane_load/include/**",
+        "/home/aisl/catkin_ws/src/latest_crane/test_pkg/include/**",
+        "/home/aisl/catkin_ws/src/bot_package/turtlebot/turtlebot3_simulations/turtlebot3_fake/include/**",
+        "/home/aisl/catkin_ws/src/bot_package/turtlebot/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+        "/home/aisl/catkin_ws/src/bot_package/turtlebot/turtlebot3/turtlebot3_slam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

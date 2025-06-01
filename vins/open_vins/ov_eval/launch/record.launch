@@ -1,0 +1,48 @@
+<launch>
+
+
+    <!-- what ros bag to play -->
+    <arg name="bag_name"    default="abcd" />
+    <arg name="bag_path"    default="~/catkin_ws/src/data/model_crane_data/real_sense" />
+
+
+    <!-- where to save the recorded poses -->
+    <arg name="path_save"   default="/home/aisl2/catkin_ws/src/data/model_crane_data/real_sense" />
+    <arg name="file_name"    default="2023-06-20-random_02" />
+
+
+    <!-- record the trajectory Ground Truth -->
+    <!-- <node name="recorder_estimate_gt" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/camera/odom/sample_world_frame" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <param name="output"     type="str" value="$(arg path_save)/truth/$(arg file_name)/trj_01.txt" />
+    </node> -->
+
+
+ <!-- record the trajectory VINS -->
+    <!-- <node name="recorder_estimate_mono" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/vins_estimator/odometry_aligned_quat" />
+        <param name="topic_type" type="str" value="Odometry" /> -->
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/msckf_vio/trj_01/msckf_vio.txt" /> -->
+
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_fusion_mono/trj_01/vins_fusion_mono.txt" /> -->
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_fusion_stereo/trj_01/vins_fusion_stereo.txt" /> -->
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_mono/trj_01/vins_mono.txt" /> -->
+
+    <!-- </node> -->
+
+
+
+  
+    <!-- record the trajectory VINS+EKF-->
+    <node name="recorder_estimate_ekf_mono" pkg="ov_eval" type="pose_to_file" output="screen" required="true">
+        <param name="topic"      type="str" value="/odometry/filtered" />
+        <param name="topic_type" type="str" value="Odometry" />
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_fusion_mono+EKF/trj_01/vins_fusion_mono+EKF.txt" /> -->
+        <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_fusion_stereo+EKF/trj_01/vins_fusion_stereo+EKF.txt" />
+        <!-- <param name="output"     type="str" value="$(arg path_save)/$(arg file_name)/vins_mono+EKF/trj_01/vins_mono+EKF.txt" /> -->
+    </node>
+
+
+
+</launch>

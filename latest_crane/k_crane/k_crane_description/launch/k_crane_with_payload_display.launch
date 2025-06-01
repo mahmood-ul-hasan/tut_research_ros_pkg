@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="model" default="$(find k_crane_description)/robots/k_crane_with_payload.urdf.xacro"/>
+  <arg name="gui" default="true" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <param name="use_gui" value="$(arg gui)" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find k_crane_description)/rviz/k_crane_default.rviz" />
+
+</launch>

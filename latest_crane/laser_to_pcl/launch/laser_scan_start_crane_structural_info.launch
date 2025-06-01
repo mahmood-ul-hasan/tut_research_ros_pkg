@@ -1,0 +1,16 @@
+<launch>
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler" output="log">
+        <remap from="scan" to="front_laser_link/scan"/>
+        <param name="max_scans" type="int" value="10" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+  <!-- <node type="LaserAssembler.py" pkg="laser_to_pcl"  name="LaserAssembler" output="screen"/>   -->
+
+
+  <node type="LaserAssembler_crane_structural_info.py" pkg="laser_to_pcl"  name="LaserAssembler_crane_structural_info" output="screen"/>  
+
+</launch>
+
+
+
+

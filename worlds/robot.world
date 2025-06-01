@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+  
+    <scene>
+      <grid>false</grid>
+    </scene>
+  
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+      <pose>1.5 -30 100 0 0 0</pose>
+    </include>
+
+
+    <include>
+      <uri>model://my_ground_plane</uri>
+    </include>
+
+
+    
+    
+    
+    <include>
+      <uri>model://robot</uri>
+      <!-- <uri>model://youbot</uri> -->
+      <!-- <uri>model://house_1</uri> -->
+      <!-- <pose>200 -100 0 0 0 0</pose> -->
+    </include>
+
+
+
+  
+    
+    
+  </world>
+</sdf>

@@ -1,0 +1,4 @@
+<launch>
+  <node type="assembler_call.py" pkg="lidar_scan_assembler" name="client_assembler" output="screen">
+  </node>
+</launch>

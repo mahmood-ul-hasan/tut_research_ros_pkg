@@ -1,0 +1,13 @@
+digraph G {
+"world" -> "base_link"[label=" Broadcaster: /tf2_broadcaster_kobelco\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "lower_link"[label=" Broadcaster: /tf2_broadcaster_kobelco\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"boom_link" -> "laser"[label=" Broadcaster: /tf2_broadcaster_kobelco\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"upper_link" -> "boom_link"[label=" Broadcaster: /tf2_broadcaster_kobelco\nAverage rate: 93.306\nBuffer length: 5.016\nMost recent transform: 1666449234.936\nOldest transform: 1666449229.92\n"];
+"lower_link" -> "upper_link"[label=" Broadcaster: /tf2_broadcaster_kobelco\nAverage rate: 93.107\nBuffer length: 5.016\nMost recent transform: 1666449234.936\nOldest transform: 1666449229.92\n"];
+"base_link" -> "velodyne"[label=" Broadcaster: /lidar2base_publisher\nAverage rate: 99.288\nBuffer length: 5.006\nMost recent transform: 1666449234.946\nOldest transform: 1666449229.94\n"];
+"map" -> "odom"[label=" Broadcaster: /map2odom_publisher\nAverage rate: 10.194\nBuffer length: 4.905\nMost recent transform: 1666449234.885\nOldest transform: 1666449229.981\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1666449234.986392"[ shape=plaintext ] ;
+}->"map";
+}

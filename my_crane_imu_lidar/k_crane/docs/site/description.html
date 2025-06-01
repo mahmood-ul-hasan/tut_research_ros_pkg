@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Description - Kobelco Crane Project</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Description";
+    var mkdocs_page_input_path = "description.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> Kobelco Crane Project</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Kobelco Crane Project</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="control.html">Control</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="description.html">Description</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#description">Description</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_1">ファイル説明</a></li>
+        
+            <li><a class="toctree-l3" href="#_2">チュートリアル</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="gazebo.html">Gazebo</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Kobelco Crane Project</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Description</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="description">Description</h1>
+<p>このパッケージはクレーンの基本的な情報について説明しています．
+この中に含まれるファイルをいじることで，クレーンの外観を変更したり，関節に設置されているモータの
+強さなどを変更することができます．</p>
+<h2 id="_1">ファイル説明</h2>
+<pre><code>├── CMakeLists.txt
+├── config
+│   └── joint_names.yaml :関節の名前を設定するファイル
+├── launch
+│   ├── base.launch : テスト用．クレーンの土台をrvizで出力
+│   ├── k_crane_description.launch : クレーンの基本情報をROSパラーメタサーバに上げる
+│   ├── k_crane_display.launch : rvizで表示
+│   ├── k_crane_with_payload_description.launch : クレーンの基本情報をROSパラメータサーバに上げる．吊り荷あり
+│   └── k_crane_with_payload_display.launch : rvizで表示．吊り荷あり
+├── meshes : 各種メッシュデータ
+│   ├── base.stl 
+│   ├── boom.stl
+│   ├── document
+│   ├── engine.stl
+│   ├── lower.stl
+│   ├── payload.stl
+│   ├── rope.stl
+│   ├── specifications.pdf : 機密情報．クレーンのスペック
+│   ├── upper.stl
+│   └── ブームフットピン座標.pdf : 機密情報．関節の座標を確かめるのに使用
+├── package.xml
+└── robots : 設定ファイル
+    ├── base.urdf.xacro : テスト用．クレーンの土台の設定ファイル
+    ├── camera.urdf.xacro : gazeboでカメラを使用するための設定ファイル
+    ├── common.urdf.xacro : マクロ定義用のファイル
+    ├── fixed_payload.urdf.xacro : 吊り荷の設定ファイル
+    ├── imu_100.urdf.xacro : 慣性センサ用の設定ファイル(100Hz)
+    ├── imu_128.urdf.xacro : 慣性センサ用の設定ファイル(128Hz)
+    ├── imu.urdf.xacro : 慣性センサの基本的な設定ファイル
+    ├── k_crane.urdf.xacro : 吊り荷なしクレーンの設定ファイル．要素部品のファイルをインクルードしている
+    ├── k_crane_with_fixed_payload.urdf.xacro : テスト用
+    ├── k_crane_with_payload.urdf.xacro : 吊り荷ありクレーンの設定ファイル．要素部品のファイルをインクルードしている
+    ├── misc.xacro : その他の設定
+    └── payload.urdf.xacro : ロープを含めた吊り荷の設定ファイル
+
+
+</code></pre>
+
+<h2 id="_2">チュートリアル</h2>
+<h3 id="rviz">rvizでクレーンを表示</h3>
+<h4 id="1">1. 釣りになし</h4>
+<p>rvizを立ち上げて，クレーンを表示してみましょう．</p>
+<pre><code>roslaunch k_crane_description k_crane_display.launch 
+</code></pre>
+
+<p><img alt="1" src="image/1.png" /></p>
+<p>空のrvizが立ち上がったと思います．
+ここで，まず，画面左上のFixed Frameを<code>map</code>から<code>world</code>に変更しましょう．
+これで，エラーが消えます．</p>
+<p>次に，モデルを読み込みましょう．
+画面左下の<code>Add</code>を押して，<code>RobotModel</code>を選択しましょう．</p>
+<p><img alt="2" src="image/2.png" /></p>
+<p>これによって，真っ赤なクレーンが表示されたと思います．</p>
+<p><img alt="3" src="image/3.png" /></p>
+<p>rvizと同時に現れたスライドバーを操作することで，クレーンを動かすことができます．
+可動域などを確かめてみましょう．
+ここで，可動域に不満がある場合は設定ファイル(k_crane_description/robots/k_crane.urdf)をいじることで
+変更することが可能です．</p>
+<h4 id="2">2. 吊り荷あり</h4>
+<p>今度は上記の，吊り荷ありバージョンを試してみましょう．</p>
+<pre><code>roslaunch k_crane_description k_crane_with_payload_display.launch 
+</code></pre>
+
+<p>吊り荷なしバージョンと同様に，
+まず，画面左上のFixed Frameを<code>map</code>から<code>world</code>に変更しましょう．
+次に，モデルを読み込みましょう．
+画面左下の<code>Add</code>を押して，<code>RobotModel</code>を選択しましょう．
+これによって，真っ赤なクレーンが表示されたと思います．</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gazebo.html" class="btn btn-neutral float-right" title="Gazebo">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="control.html" class="btn btn-neutral" title="Control"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="control.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="gazebo.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>

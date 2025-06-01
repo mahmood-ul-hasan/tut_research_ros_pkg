@@ -1,0 +1,22 @@
+<launch>
+  
+  <include file="$(find laser_filters)/examples/angle_filter_example.launch"/>
+
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="laser_assembler" output="log">
+        <!-- <remap from="scan" to="front_laser_link/scan"/> -->
+        <!-- <remap from="scan" to="/ld_lrs3611/scan"/> -->
+        <remap from="scan" to="/ld_lrs3611/scan_filtered"/>
+        <param name="max_scans" type="int" value="3500" />
+        <param name="fixed_frame" type="string" value="world" />
+  </node>
+  <!-- <node type="LaserAssembler.py" pkg="laser_to_pcl"  name="LaserAssembler" output="screen"/>   -->
+
+ <node type="LaserAssemblerVelodyne" pkg="laser_assembler"  name="LaserAssembler" output="screen" />  
+
+  <!-- <node type="LaserAssembler_crane_structural_info.py" pkg="laser_assembler"  name="LaserAssembler_crane_structural_info" output="screen"/>   -->
+
+</launch>
+
+
+
+

@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="pedestrian_in_simulator" type="pedestrian_respawner_node" name="pedestrian_respawner_node" output="screen" >
+        <param name="initial_pos_x" value="26.0" />
+        <param name="initial_pos_y" value="-6.0" />
+        <param name="target_pos_x" value="22.0" />
+        <param name="target_pos_y" value="0.0" />
+        <param name="move_speed" value="0.3" />
+    </node>
+</launch>

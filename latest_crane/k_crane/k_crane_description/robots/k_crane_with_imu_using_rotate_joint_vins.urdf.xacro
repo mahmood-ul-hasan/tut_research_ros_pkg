@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="k_crane.urdf.xacro"/>
+
+	<!-- <xacro:include filename="imu_100.urdf.xacro"/>  -->
+
+   
+   <!--
+   <xacro:include filename="move_macro.xacro" />
+  <xacro:include filename="laser_macro.xacro" />
+
+   <link name="base_link"/>  
+
+  <xacro:body_macro parent="base_link" />
+  <xacro:laser_macro prefix="front_laser" parent="base_link" xyz="0 0 0.13" rpy="0 ${radians(90)} 0"/> 
+  -->
+   
+  <!-- 
+	Continuous joint  -->
+    <!-- <xacro:include filename="laser_move_macro_loam.urdf.xacro"/> -->
+
+    <!-- Sensors settings for Complementry filter (First methof) -->
+	<!-- <xacro:include filename="imu_128_macro.urdf.xacro"/> -->
+  <!-- <xacro:laser_move_macro prefix="front_laser" parent="boom_link" xyz="25 0 0" rpy="0 ${radians(0)} 0"/>  -->
+	<!-- <xacro:imu_128_macro prefix="imu_boom" parent="boom_link" xyz = "1.5 0 0" rpy="0 ${radians(90)} 0"/> -->
+
+
+	<!-- <xacro:laser_move_macro prefix="front_laser" parent="upper_link" xyz = "0 0 12" rpy="0 ${radians(90)} 0"/>   -->
+  <!--<xacro:imu_128_macro prefix="imu_upper" parent="upper_link" xyz = "1.5 0 0" rpy="0 ${radians(0)} 0"/> 	-->
+	<!-- <xacro:imu_128_macro prefix="imu_boom" parent="boom_link" xyz = "24 0 0" rpy="0 ${radians(90)} 0"/> -->
+
+
+
+
+<!-- Sensors settings for VINS mapping -->
+  <xacro:include filename="laser_move_macro.urdf.xacro"/>
+	<xacro:include filename="camera_vins.urdf.xacro"/>
+  <xacro:include filename="imu_128_macro_VINS.urdf.xacro"/>
+  <xacro:include filename="barometer_vins.urdf.xacro"/>
+  <xacro:barometer_macro prefix="baro1" parent="boom_link" xyz = "20.5 0 0" rpy="0 ${radians(0)} 0"/>  
+
+
+
+    <!-- realsense_ros_gazebo -->
+  <xacro:include filename="realsense_ros_gazebo/tracker.xacro"/>
+
+  <xacro:laser_move_macro prefix="front_laser" parent="boom_link" xyz="21 0 0" rpy="0 ${radians(0)} 0"/> 
+  <xacro:imu_128_macro_VINS prefix="imu4" parent="boom_link" xyz = "20 0 0" rpy="0 ${radians(90)} 0"/>  
+  <xacro:camera_macro prefix="cam0" parent="boom_link" xyz = "20 0 0" rpy="0 ${radians(90)} 0"/>  
+
+
+
+  <xacro:realsense_T265 sensor_name="camera" parent_link="boom_link" rate="30.0">
+    <origin rpy="0 ${radians(90)}  ${radians(0)}" xyz="20 0 0"/>
+  </xacro:realsense_T265>
+
+
+  
+	<!-- <xacro:camera_macro prefix="front_camera" parent="boom_link" xyz="20, 2.4 0" rpy="0 ${radians(90)} 0"/> -->
+    
+
+
+</robot>
+

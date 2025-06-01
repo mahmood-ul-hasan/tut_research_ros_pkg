@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  
+
+  <node pkg="optor_stereo_visensor_ros" type="stereo_visensor_node" name="stereo_visensor_node" output="screen"/>
+</launch>
+
+

@@ -1,0 +1,63 @@
+<launch>
+    <node pkg="pedestrian_in_simulator" type="pedestrian_respawner_node" name="pedestrian_respawner_node" output="screen" >
+        <param name="initial_pos_x_0" value="25.5" />
+        <param name="initial_pos_y_0" value="-7.0" />
+        <param name="target_pos_x_0" value="20.0" />
+        <param name="target_pos_y_0" value="-3.0" />
+        <param name="move_speed_0" value="0.1" />
+
+        <param name="initial_pos_x_1" value="27.0" />
+        <param name="initial_pos_y_1" value="7.5" />
+        <param name="target_pos_x_1" value="18.0" />
+        <param name="target_pos_y_1" value="6.0" />
+        <param name="move_speed_1" value="0.1" />
+
+        <param name="initial_pos_x_2" value="15.0" />
+        <param name="initial_pos_y_2" value="10.0" />
+        <param name="target_pos_x_2" value="14.5" />
+        <param name="target_pos_y_2" value="8.0" />
+        <param name="move_speed_2" value="0.1" />
+
+        <param name="initial_pos_x_3" value="12.0" />
+        <param name="initial_pos_y_3" value="-10.0" />
+        <param name="target_pos_x_3" value="10.0" />
+        <param name="target_pos_y_3" value="-6.0" />
+        <param name="move_speed_3" value="0.1" />
+
+        <param name="initial_pos_x_4" value="29.0" />
+        <param name="initial_pos_y_4" value="6.5" />
+        <param name="target_pos_x_4" value="20.0" />
+        <param name="target_pos_y_4" value="5.0" />
+        <param name="move_speed_4" value="0.1" />
+
+        <!-- <param name="initial_pos_x_0" value="24.5" />
+        <param name="initial_pos_y_0" value="-6.0" />
+        <param name="target_pos_x_0" value="15.0" />
+        <param name="target_pos_y_0" value="-3.0" />
+        <param name="move_speed_0" value="0.1" />
+
+        <param name="initial_pos_x_1" value="26.0" />
+        <param name="initial_pos_y_1" value="6.5" />
+        <param name="target_pos_x_1" value="18.0" />
+        <param name="target_pos_y_1" value="6.0" />
+        <param name="move_speed_1" value="0.1" />
+
+        <param name="initial_pos_x_2" value="15.0" />
+        <param name="initial_pos_y_2" value="10.0" />
+        <param name="target_pos_x_2" value="14.5" />
+        <param name="target_pos_y_2" value="8.0" />
+        <param name="move_speed_2" value="0.1" />
+
+        <param name="initial_pos_x_3" value="12.0" />
+        <param name="initial_pos_y_3" value="-10.0" />
+        <param name="target_pos_x_3" value="10.0" />
+        <param name="target_pos_y_3" value="-6.0" />
+        <param name="move_speed_3" value="0.1" />
+
+        <param name="initial_pos_x_4" value="28.0" />
+        <param name="initial_pos_y_4" value="5.5" />
+        <param name="target_pos_x_4" value="20.0" />
+        <param name="target_pos_y_4" value="5.0" />
+        <param name="move_speed_4" value="0.1" /> -->
+    </node>
+</launch>

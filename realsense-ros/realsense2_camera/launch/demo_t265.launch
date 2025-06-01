@@ -1,0 +1,11 @@
+<launch>
+  <include file="$(find realsense2_camera)/launch/rs_t265.launch"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_camera)/rviz/t265.rviz" required="true" />
+
+  <node name="tf_to_path" pkg="tf_to_trajectory" type="tf_to_path.py">
+    <param name="parent_frame_id" value="camera_odom_frame"/>
+    <param name="child_frame_id" value="camera_pose_frame"/>
+    <param name="out_topic_name" value="/trajectory"/>
+    <param name="append_rate" value="5"/>
+  </node>
+</launch>

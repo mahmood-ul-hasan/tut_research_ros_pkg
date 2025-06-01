@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- controllers settings-->
+	<!-- laod joint controllers configuration from yaml file to parameter server -->
+	<rosparam file="$(find k_crane_control)/config/k_crane_control.yaml" command="load"/>
+
+	<!-- spawning controllers-->
+	<!-- load the controller-->
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+		output="screen" ns="/k_crane" args="k_crane_joint_controller joint_state_controller"/>
+
+	<!--Convert joint state to tf transform for rviz, etc -->
+	<!--node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+		<remap from="/joint_states" to="/k_crane/joint_states"/>
+	</node-->
+</launch>

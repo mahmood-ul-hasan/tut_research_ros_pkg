@@ -1,0 +1,55 @@
+Case 1 to Case 5
+double floor_edge_stddev = .000002;
+double floor_edge_stddev2 = .000002;
+double floor_edge_stddev3 = .000002;
+double wall_edge_stddev1 = .2;
+double wall_edge_stddev2 = .02;
+double wall_edge_stddev3 = .2;
+double wall_edge_stddev4 = .02;
+double wall_edge_stddev5 = .2;
+double plane_to_plane_edge_stddev = 0.000002;
+
+
+
+Case 1
+const_stddev_x = 4; 
+const_stddev_y = 4; 
+const_stddev_z = 4; 
+const_stddev_q1 = 4;
+const_stddev_q2 = 4;
+const_stddev_q3 = 4;
+
+
+Case 2
+const_stddev_x = 4; 
+const_stddev_y = 4; 
+const_stddev_z = 4; 
+const_stddev_q1 = 4;
+const_stddev_q2 = .4;
+const_stddev_q3 = .04;
+
+
+Case 3
+const_stddev_x = 4; 
+const_stddev_y = 4; 
+const_stddev_z = 4; 
+const_stddev_q1 = 400;
+const_stddev_q2 = .004;
+const_stddev_q3 = .0004;
+
+
+Case 4
+const_stddev_x = 4; 
+const_stddev_y = 4; 
+const_stddev_z = 4; 
+const_stddev_q1 = 400;
+const_stddev_q2 = .00004;
+const_stddev_q3 = .000004;
+
+Case 5
+ const_stddev_x = 4; 
+  const_stddev_y = 4; 
+  const_stddev_z = 4; 
+  const_stddev_q1 = 400;
+  const_stddev_q2 = .0000004;
+  const_stddev_q3 = .0000004;

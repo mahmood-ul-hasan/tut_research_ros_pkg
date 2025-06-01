@@ -1,0 +1,68 @@
+<launch>
+	<arg name="rvizconfig" default="$(find ridar_scan)/rviz/collision_warning.rviz" />
+
+	<!-- load robot_description of k_crane -->
+	<include file="$(find k_crane_description)/launch/k_crane_description_shakingrope.launch"/>
+
+	<arg name="ldlrs_model" default="$(find lrs_orion_simulator)/xacro/dtw_laser_staticfalse.xacro" />
+	 <!--<arg name="rvizconfig" default="$(find lrs_orion_simulator)/rviz/dtw_sensor.rviz" />  -->
+	<param name="ldlrs_description" command="$(find xacro)/xacro $(arg ldlrs_model) --inorder"/>
+
+	<!-- <arg name="pedestrian_model" default="$(find pedestrian_in_simulator)/xacro/pedestrian_block.xacro" />
+	<param name="pedestrian_description" command="$(find xacro)/xacro $(arg pedestrian_model) - -inorder"/> -->
+
+	<arg name="payload_model" default="$(find k_crane_description)/robots/payload_only.urdf.xacro" />
+	<param name="payload_description" command="$(find xacro)/xacro $(arg payload_model) --inorder"/>
+
+	<!-- we create empty world, changing only the name of the world to be launch -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<!--arg name="world_name" value="$(find k_crane_gazebo)/worlds/sim.world"/-->
+		<arg name="world_name" value="$(find k_crane_gazebo)/worlds/person.world"/>
+		<arg name="paused" default="true"/>
+		<arg name="use_sim_time" default="true"/>
+		<arg name="recording" default="false"/>
+		<arg name="debug" default="false"/>
+		<!--arg name="physics" value="bullet"/-->
+	</include>
+
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+	<!-- run a python script to send a service-call to gazebo_ros to spawn URDF of k_crane -->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model k_crane -param robot_description -J pitch_joint 1.0 -unpause"/>
+
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param ldlrs_description -urdf -model dtw_robot -x 0 -y -10 -z 0" />
+
+	<!-- <node name="pedestrian_spawner" pkg="gazebo_ros" type="spawn_model" args="-param pedestrian_description -urdf -model pedestrian_block -x 30 -y 10 -z 0" /> -->
+
+	<node name="payload_spawner" pkg="gazebo_ros" type="spawn_model" args="-param payload_description -urdf -model rope_load_model -x 30 -y 0 -z 0" />
+
+	<!-- run nodes for moving lidar sensor model -->
+	<arg name="is_lidar_sensor_system_on_boom_arg" default="true" />
+	<node pkg="move_lidar_sensor_model" name="sensor_model_respawner_node" type="sensor_model_respawner_node" >
+        <param name="spin_cycle" value="0.05" />
+        <param name="is_k_crane" value="true" />
+        <param name="is_lidar_sensor_system_on_boom" value="$(arg is_lidar_sensor_system_on_boom_arg)" />
+        <param name="is_collision_warning" value="true" />
+    </node>
+    <node pkg="move_lidar_sensor_model" name="sensor_model_tf_broadcaster_node" type="sensor_model_tf_broadcaster_node" >
+        <param name="is_k_crane" value="true" />
+        <param name="is_lidar_sensor_system_on_boom" value="$(arg is_lidar_sensor_system_on_boom_arg)" />
+    </node>
+	<node pkg="move_lidar_sensor_model" name="k_crane_joint_tf_broadcaster_node" type="k_crane_joint_tf_broadcaster_node" />
+
+	<node pkg="shake_crane_load" name="load_tf_broadcaster_node" type="load_tf_broadcaster_node" >
+        <param name="angle_max_roll" value="0.01" />
+        <param name="angle_max_pitch" value="0.01" />
+        <param name="angle_max_yaw" value="0.3" />
+        <param name="shake_speed_roll" value="0.015" />
+        <param name="shake_speed_pitch" value="0.015" />
+        <param name="shake_speed_yaw" value="0.015" />
+    </node>
+	<node pkg="shake_crane_load" name="load_respawner_node" type="load_respawner_node" >
+        <param name="will_area_visualize" value="false" />
+    </node>
+
+	<!-- ros_control k_crane launch file -->
+	<include file="$(find k_crane_control)/launch/k_crane_control.launch"/>
+
+</launch>

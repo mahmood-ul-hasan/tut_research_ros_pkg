@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot name="k_crane" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<link name="payload_rope_link">
+		<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="27"/>
+			</geometry>
+			<mass value="0.1"/>
+			<inertia
+				ixx="0.001"
+				ixy="0.001"
+				ixz="0.001"
+				iyy="0.001"
+				iyz="0.001"
+				izz="0.001"/>
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="27"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+			<geometry>
+				<cylinder radius="0.05" length="27"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="payload_body_link">
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertial>
+			<geometry>
+				<box size="1 1 1"/>
+			</geometry>
+			<mass value="100"/>
+			<inertia
+				ixx="0.001"
+				ixy="0.001"
+				ixz="0.001"
+				iyy="0.001"
+				iyz="0.001"
+				izz="0.001"/>
+		</inertial>
+		<visual>
+			<geometry>
+				<box size="1 1 1"/>
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="1 1 1"/>
+			</geometry>
+		</collision>
+	</link>
+
+	<joint name="joint4payload" type="fixed">
+		<parent link="payload_rope_link"/>
+		<child  link="payload_body_link"/>
+		<origin xyz="0 0 -13.5" rpy="0 0 0"/>
+	</joint>
+
+</robot>

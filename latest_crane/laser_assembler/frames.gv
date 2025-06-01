@@ -1,0 +1,8 @@
+digraph G {
+"world" -> "sensor_base"[label=" Broadcaster: /odom_tf_publisher\nAverage rate: 1.253\nBuffer length: 3.99\nMost recent transform: 1700316776.0\nOldest transform: 1700316772.01\n"];
+"sensor_base" -> "laser"[label=" Broadcaster: /odom_tf_publisher\nAverage rate: 1.253\nBuffer length: 3.99\nMost recent transform: 1700316776.0\nOldest transform: 1700316772.01\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1700316776.787284"[ shape=plaintext ] ;
+}->"world";
+}

@@ -1,0 +1,33 @@
+<launch>
+
+	<arg name="rvizconfig" default="$(find ridar_scan)/rviz/collision_warning.rviz" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+    <!-- Run lms1xx node -->
+    <include file="$(find lms1xx)/launch/LMS1xx.launch" />
+
+    <!-- Run rotating_base_node -->
+    <include file="$(find orion_rotating_base)/launch/rotating_base.launch" />
+
+    <node pkg="ridar_scan" type="collision_warning" name="collision_warning" >
+        <param name="is_simulation" value="false" />
+        <param name="rotate_speed" value="2.0" />
+        <param name="will_pablishing_cloud" value="true" />
+        <param name="length_correction" value="-2.2" />
+        <param name="warning_threshold" value="1" />
+        <!-- <param name="warning_viz_model_x" value="20.0" />
+        <param name="warning_viz_model_warned_y" value="-10.0" />
+        <param name="warning_viz_model_not_warned_y" value="-80.0" />
+        <param name="warning_viz_model_z" value="0.0" /> -->
+        <param name="enable_PCA" value="false" />
+        <param name="circle_radius" value="10.042558169340729" />
+        <!-- <param name="correction_cw_x" value="2.5" />
+        <param name="correction_cw_y" value="1.6" />
+        <param name="correction_ccw_x" value="3.0" />
+        <param name="correction_ccw_y" value="-0.3" /> -->
+        <param name="is_offline" value="false" />
+        <param name="sensor_cylinder_distance" value="60.0" />
+        <param name="sensor_height" value="20.8" />
+    </node>
+
+</launch>

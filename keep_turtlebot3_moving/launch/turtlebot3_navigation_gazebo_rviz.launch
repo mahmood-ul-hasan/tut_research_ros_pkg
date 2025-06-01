@@ -1,0 +1,60 @@
+<launch>
+    <!-- Include the launch file for TurtleBot3 simulation in Gazebo. 
+         This will start the simulation environment with the default world map. -->
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+
+    <!-- Define a launch argument for selecting the TurtleBot3 model. 
+         It can be either 'burger' or 'waffle', and defaults to the environment variable 'TURTLEBOT3_MODEL'. -->
+    <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle]"/>
+
+    <!-- Include the launch file for TurtleBot3 description. 
+         This will load the URDF (Unified Robot Description Format) of the TurtleBot3 model specified by the 'model' argument. -->
+    <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
+        <arg name="model" value="$(arg model)" />
+    </include>
+
+    <!-- Launch RViz for visualizing the robot's movements and data. 
+         It uses the configuration file specified in the path 'rviz_config.rviz' within the 'keep_turtlebot3_moving' package. -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find keep_turtlebot3_moving)/config/rviz_config.rviz"/>
+
+    <!-- Include the remote launch file for TurtleBot3.
+         This sets up the necessary topics and nodes for controlling the robot remotely. -->
+    <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch" />
+
+    <!-- Load the map server node with the specified map file. 
+         This node provides the map data for the robot's navigation stack. -->
+    <arg name="map_file" default="$(find keep_turtlebot3_moving)/config/map.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    </node>
+
+    <!-- Include the AMCL (Adaptive Monte Carlo Localization) launch file.
+         AMCL is used for the robot's localization in the map. -->
+    <include file="$(find turtlebot3_navigation)/launch/amcl.launch"/>
+
+    <!-- Arguments to define the command velocity topic and odometry topic.
+         These topics are used by the navigation stack for controlling and tracking the robot's movement. -->
+    <arg name="cmd_vel_topic" default="/cmd_vel" />
+    <arg name="odom_topic" default="odom" />
+
+    <!-- Launch the move_base node for autonomous navigation.
+         The move_base node handles global and local path planning using the DWA (Dynamic Window Approach) planner. -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <!-- Define the local planner to be used by move_base. 
+             Here, the DWAPlannerROS is set for local path planning. -->
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+
+        <!-- Load the global and local costmap parameters from the corresponding YAML files.
+             These parameters are required for move_base to generate and manage the costmaps used for path planning. -->
+        <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find turtlebot3_navigation)/param/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find turtlebot3_navigation)/param/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find turtlebot3_navigation)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find turtlebot3_navigation)/param/dwa_local_planner_params_$(arg model).yaml" command="load" />
+
+        <!-- Remap the command velocity and odometry topics to the specified arguments. 
+             This ensures the move_base node uses the correct topics for controlling and monitoring the robot. -->
+        <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+        <remap from="odom" to="$(arg odom_topic)"/>
+    </node>
+</launch>

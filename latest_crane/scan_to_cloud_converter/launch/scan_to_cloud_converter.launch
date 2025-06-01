@@ -1,0 +1,7 @@
+<launch>
+  <node name="scan_to_cloud_converter_node" pkg="scan_to_cloud_converter" type="scan_to_cloud_converter_node" output="screen">
+    <param name="min_range" value="0.0"/>
+    <param name="max_range" value="30.0"/>
+  </node>
+</launch>
+

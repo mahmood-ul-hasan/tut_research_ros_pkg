@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="area_vis_cylinder" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- <xacro:include filename="$(find lrs_orion_simulator)/xacro/move_macro.xacro" />
+  <xacro:include filename="$(find lrs_orion_simulator)/xacro/laser_macro.xacro" /> -->
+
+  <link name="base_link"/>
+
+	<link name="cylinder_area_vis_link1">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="16.0"/>
+			</geometry>
+		</visual>
+	</link>
+	<gazebo reference="cylinder_area_vis_link1">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis1" type="fixed">
+		<parent link="base_link"/>
+		<child  link="cylinder_area_vis_link1"/>
+		<origin xyz="0.0 0.0 -5.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+	<link name="cylinder_area_vis_link2">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="5.0" length="0.1"/>
+			</geometry>
+		</visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <geometry>
+				<cylinder radius="0.1" length="0.1"/>
+      </geometry>
+    </collision>
+	</link>
+	<gazebo reference="cylinder_area_vis_link2">
+		<material>Gazebo/Yellow</material>
+	</gazebo>
+
+	<joint name="joint_cylinder_area_vis2" type="fixed">
+		<parent link="cylinder_area_vis_link1"/>
+		<child  link="cylinder_area_vis_link2"/>
+		<origin xyz="0.0 0.0 -8.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+
+	<link name="margin_area_vis_link1">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="6.9949408378548534" length="16.0"/>
+			</geometry>
+		</visual>
+	</link>
+	<gazebo reference="margin_area_vis_link1">
+		<material>Gazebo/Green</material>
+	</gazebo>
+
+	<joint name="joint_margin_area_vis1" type="fixed">
+		<parent link="base_link"/>
+		<child  link="margin_area_vis_link1"/>
+		<origin xyz="0.0 0.0 -5.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+	<link name="margin_area_vis_link2">
+		<origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="6.9949408378548534" length="0.1"/>
+			</geometry>
+		</visual>
+	</link>
+	<gazebo reference="margin_area_vis_link2">
+		<material>Gazebo/Green</material>
+	</gazebo>
+
+	<joint name="joint_margin_area_vis2" type="fixed">
+		<parent link="margin_area_vis_link1"/>
+		<child  link="margin_area_vis_link2"/>
+		<origin xyz="0.0 0.0 -8.0" rpy="0.0 0.0 0.0"/>
+		<axis xyz="1 0 0"/>
+	</joint>
+
+</robot>

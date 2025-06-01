@@ -1,0 +1,6 @@
+<launch>
+
+
+  <!-- Launch the node with the loaded parameters -->
+  <node pkg="map_optimization" type="PointCloudIntersection" name="PointCloudIntersection" output="screen"/>
+</launch>

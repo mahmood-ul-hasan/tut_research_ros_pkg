@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpre_processing.a  CMakeFiles/pre_processing.dir/src/pre_processing.cpp.o
+/usr/bin/ranlib libpre_processing.a

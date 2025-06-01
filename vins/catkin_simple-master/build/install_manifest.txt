@@ -1,0 +1,14 @@
+/usr/local/_setup_util.py
+/usr/local/env.sh
+/usr/local/setup.bash
+/usr/local/local_setup.bash
+/usr/local/setup.sh
+/usr/local/local_setup.sh
+/usr/local/setup.zsh
+/usr/local/local_setup.zsh
+/usr/local/.rosinstall
+/usr/local/lib/pkgconfig/catkin_simple.pc
+/usr/local/share/catkin_simple/cmake/catkin_simple-extras.cmake
+/usr/local/share/catkin_simple/cmake/catkin_simpleConfig.cmake
+/usr/local/share/catkin_simple/cmake/catkin_simpleConfig-version.cmake
+/usr/local/share/catkin_simple/package.xml

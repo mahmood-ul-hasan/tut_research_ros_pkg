@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgraph_optimization.a  CMakeFiles/graph_optimization.dir/src/graph_optimization.cpp.o
+/usr/bin/ranlib libgraph_optimization.a

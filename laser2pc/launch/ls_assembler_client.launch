@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="laser_to_pcl" type="laser_to_pc.py" name="laser2pc" output="screen">  
+
+    </node>
+</launch>

@@ -1,0 +1,13 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/hdl_graph_slam.dir/src/hdl_graph_slam/graph_slam.cpp.o"
+  "CMakeFiles/hdl_graph_slam.dir/src/hdl_graph_slam/information_matrix_calculator.cpp.o"
+  "CMakeFiles/hdl_graph_slam.dir/src/g2o/robust_kernel_io.cpp.o"
+  "CMakeFiles/hdl_graph_slam.dir/src/graph_optimization.cpp.o"
+  "libhdl_graph_slam.pdb"
+  "libhdl_graph_slam.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/hdl_graph_slam.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libGpop.a  CMakeFiles/Gpop.dir/src/Bar.cpp.o CMakeFiles/Gpop.dir/src/Gnuplot.cpp.o CMakeFiles/Gpop.dir/src/Pie.cpp.o CMakeFiles/Gpop.dir/src/Series.cpp.o CMakeFiles/Gpop.dir/src/Vector.cpp.o CMakeFiles/Gpop.dir/src/Hist.cpp.o
+/usr/bin/ranlib libGpop.a

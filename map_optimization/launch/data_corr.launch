@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- <arg name="config_path" default="$(find map_optimization)/config/data_corr_parameteres/gazebo_simple_wall_env_noised.yaml"/> -->
+  <arg name="config_path" default="$(find map_optimization)/config/data_corr_parameteres/data_corr_kobelcko.yaml"/>
+  <!-- <arg name="config_path" default="$(find map_optimization)/config/data_corr_parameteres/gazebo_simple_wall_env.yaml"/> -->
+  
+<!-- Load the parameters from the YAML file -->
+  <rosparam command="load" file="$(arg config_path)"/>
+
+  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find map_optimization)/rviz_map_optimization.rviz"/> -->
+
+  <node pkg="map_optimization" type="data_corr" name="data_corr" output="screen"/>
+</launch>
+

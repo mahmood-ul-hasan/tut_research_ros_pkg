@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- run laserscan_to_pointcloud node -->
+    <node pkg="pointcloud_to_laserscan" type="laserscan_to_pointcloud_node" name="laserscan_to_pointcloud">
+        <remap from="scan_in" to="ld_lrs3611/scan_filtered"/>
+        <remap from="cloud" to="ld_lrs3611/scan_filtered_pc"/>
+        <param name="target_frame" value="world"/> <!-- Leave disabled to output pointcloud in scan frame -->
+        <param name="transform_tolerance" value="0.1"/>
+        <param name="concurrency_level" value="2"/> <!-- 0: Detect number of cores, 1: Single threaded, 2->inf: Parallelism level -->
+    </node>
+
+    <!-- run pointcloud_to_laserscan node -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+        <remap from="cloud_in" to="ld_lrs3611/scan_filtered_pc"/>
+        <remap from="scan" to="ld_lrs3611/scan_filtered_world"/>
+
+        <param name="transform_tolerance" value="0.1"/>
+        <param name="min_height" value="-40"/>
+        <param name="max_height" value="0"/>
+        <param name="angle_min" value="-1.5707963705062866"/>
+        <param name="angle_max" value="4.71238899230957"/>
+        <param name="angle_increment" value="0.004363323096185923"/>
+        <param name="scan_time" value="0.125"/>
+        <param name="range_min" value="2"/>
+        <param name="range_max" value="250.0"/>
+        <param name="use_inf" value="true"/>
+        <param name="inf_epsilon" value="1.0"/>
+        <param name="concurrency_level" value="2"/> <!-- 0: Detect number of cores, 1: Single threaded, 2->inf: Parallelism level -->
+    </node>
+
+</launch>
