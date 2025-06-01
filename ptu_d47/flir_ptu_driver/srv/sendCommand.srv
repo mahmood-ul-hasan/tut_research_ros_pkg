@@ -1,0 +1,8 @@
+float64 end_pos         # パンの目標位置
+float64 start_scan_pos  # スキャンが開始する位置
+float64 end_scan_pos    # スキャンが終了する位置
+float64 speed           # パンの移動速度
+---
+time start_stamp        # スキャン範囲の位置に到達した時刻
+time end_stamp          # スキャン範囲外の位置に到達した時刻
+float64 start_scan_pos  # スキャン開始位置を保持
