@@ -1,0 +1,7 @@
+digraph G {
+"camera_init" -> "camera"[label=" Broadcaster: /laserOdometry_bf\nAverage rate: 1.584\nBuffer length: 3.157\nMost recent transform: 962648107.597\nOldest transform: 962648104.44\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1651759399.6372557"[ shape=plaintext ] ;
+}->"camera_init";
+}

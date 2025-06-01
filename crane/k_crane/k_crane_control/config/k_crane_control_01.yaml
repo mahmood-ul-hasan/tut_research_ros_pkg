@@ -1,0 +1,124 @@
+/k_crane:
+    # Publish all joint state
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 100
+
+    # JointTrajectoryController
+    k_crane_joint_controller:
+        type: velocity_controllers/JointTrajectoryController
+        joints:
+            - pitch_joint
+            - yaw_joint
+            - joint_boom1
+            - joint12
+            # - front_laser_joint
+
+        gains:
+            pitch_joint: {p: 10000, d: 1, i: 520, i_clamp: 1}
+            yaw_joint:   {p: 100000, d: 1, i: 460, i_clamp: 1}
+            joint_boom1:   {p: 100000, d: 1, i: 460, i_clamp: 1}
+            joint12:   {p: 100000, d: 1, i: 460, i_clamp: 1}
+
+            pitch_joint:
+                p: 10000
+                d: 1
+                i: 520
+                i_clamp: 1
+            yaw_joint:
+                p: 100000
+                d: 1
+                i: 460
+                i_clamp: 1
+            joint_boom1:
+                p: 100000
+                d: 1
+                i: 460
+                i_clamp: 1
+            joint12:
+                p: 100000
+                d: 1
+                i: 460
+                i_clamp: 1
+            # front_laser_joint:
+            #     p: 0.1
+            #     d: 0
+            #     i: 1
+            #     i_clamp: 1
+        
+
+        #gazebo ros control (bug avoidance)
+        gazebo_ros_control:
+            pid_gains:
+                # pitch_joint: {p: 300, i: 5, d: 1}
+                # yaw_joint:   {p: 300, i: 5, d: 1}
+                pitch_joint:
+                    p: 300
+                    i: 5
+                    d: 1
+                yaw_joint:
+                    p: 300
+                    i: 5
+                    d: 1
+                jointboom1:
+                    p: 300
+                    i: 5
+                    d: 1
+                joint12:
+                    p: 300
+                    i: 5
+                    d: 1
+                # front_laser_joint:
+                #     p: 0.1
+                #     i: 1
+                #     d: 0
+    
+    gazebo_ros_control:
+        pid_gains:
+            # pitch_joint: {p: 1000, i: 100, d: 100}
+            # yaw_joint: {p: 1000, i: 100, d: 100}
+            pitch_joint:
+                p: 1000
+                i: 100
+                d: 100
+            yaw_joint:
+                p: 1000
+                i: 100
+                d: 100
+            jointboom1:
+                p: 1000
+                i: 100
+                d: 100
+            joint12:
+                p: 1000
+                i: 100
+                d: 100
+            # front_laser_joint:
+            #     p: 0.1
+            #     i: 1
+            #     d: 0
+
+/gazebo_ros_control:
+    pid_gains:
+        # pitch_joint: {p: 1000, i: 100, d: 100}
+        # yaw_joint: {p: 1000, i: 100, d: 100}
+        pitch_joint:
+            p: 1000
+            i: 100
+            d: 100
+        yaw_joint:
+            p: 1000
+            i: 100
+            d: 100
+        jointboom1:
+            p: 1000
+            i: 100
+            d: 100
+        joint12:
+            p: 1000
+            i: 100
+            d: 100
+        # front_laser_joint:
+        #     p: 0.1
+        #     i: 1
+        #     d: 0

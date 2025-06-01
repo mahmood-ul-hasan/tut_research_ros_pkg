@@ -1,0 +1,22 @@
+digraph G {
+"camera_init" -> "aft_mapped"[label=" Broadcaster: /alaserMapping\nAverage rate: 9.915\nBuffer length: 2.219\nMost recent transform: 1724429915.481\nOldest transform: 1724429913.262\n"];
+"world" -> "camera_init"[label=" Broadcaster: /tf2_broadcaster_by_real_sense_imu\nAverage rate: 17.587\nBuffer length: 4.378\nMost recent transform: 1724670584.396\nOldest transform: 1724670580.018\n"];
+"rotation_base" -> "velodyne"[label=" Broadcaster: /tf2_broadcaster_by_real_sense_imu\nAverage rate: 17.585\nBuffer length: 4.379\nMost recent transform: 1724670584.396\nOldest transform: 1724670580.017\n"];
+"camera_pose_frame" -> "rotation_base"[label=" Broadcaster: /tf2_broadcaster_by_real_sense_imu\nAverage rate: 17.586\nBuffer length: 4.379\nMost recent transform: 1724670584.396\nOldest transform: 1724670580.017\n"];
+"rotation_base" -> "laser"[label=" Broadcaster: /tf2_broadcaster_by_real_sense_imu\nAverage rate: 17.585\nBuffer length: 4.379\nMost recent transform: 1724670584.396\nOldest transform: 1724670580.017\n"];
+"camera_odom_frame" -> "camera_pose_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 44.724\nBuffer length: 1.968\nMost recent transform: 1724429915.073\nOldest transform: 1724429913.105\n"];
+"world" -> "camera_odom_frame"[label=" Broadcaster: /tf2_broadcaster_by_real_sense_imu\nAverage rate: 17.586\nBuffer length: 4.378\nMost recent transform: 1724670584.396\nOldest transform: 1724670580.017\n"];
+"camera_link" -> "camera_fisheye1_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_pose_frame" -> "camera_link"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_fisheye1_frame" -> "camera_fisheye1_optical_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_link" -> "camera_fisheye2_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_fisheye2_frame" -> "camera_fisheye2_optical_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_link" -> "camera_gyro_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_gyro_frame" -> "camera_imu_optical_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_link" -> "camera_accel_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"camera_accel_frame" -> "camera_accel_optical_frame"[label=" Broadcaster: /play_1724670517115227542\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1724670584.5615494"[ shape=plaintext ] ;
+}->"world";
+}

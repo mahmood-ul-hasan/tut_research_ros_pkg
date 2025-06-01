@@ -1,0 +1,4 @@
+string file_name      # point cloud file name
+int32 speed           # rotating speed [deg/sec]
+---
+bool success

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function myCalculate() {
+                let thickness_cm = parseFloat(document.getElementById('thickness_cm').value);
+                let thickness_m = parseFloat(document.getElementById('thickness_m').value);
+                let radius = parseFloat(document.getElementById('radius').value);
+                let l_load = parseFloat(document.getElementById('l_load').value);
+                let l_boom = parseFloat(document.getElementById('l_boom').value);
+                let w_scan_degs = parseFloat(document.getElementById('w_scan_degs').value);
+                let w_scan_rads = parseFloat(document.getElementById('w_scan_rads').value);
+                let v_person_ms = parseFloat(document.getElementById('v_person_ms').value);
+                let v_person_kmh = parseFloat(document.getElementById('v_person_kmh').value);
+                let scan_frequency = parseFloat(document.getElementById('scan_frequency').value);
+                let w_boom_rpm = parseFloat(document.getElementById('w_boom_rpm').value);
+
+                if (thickness_m < 0) {
+                    thickness_m = thickness_cm / 100.0;
+                } else {
+                    thickness_cm = thickness_m * 100.0;
+                }
+                if (w_scan_degs < 0) {
+                    w_scan_degs = w_scan_rads * 180 / Math.PI;
+                } else {
+                    w_scan_rads = w_scan_degs * Math.PI / 180;
+                }
+                if (w_boom_rpm < 0) {
+                    if (v_person_kmh < 0) {
+                        v_person_kmh = v_person_ms * 3.6;
+                    } else {
+                        v_person_ms = v_person_kmh / 3.6;
+                    }
+                } else {
+                    v_person_ms = (w_boom_rpm * Math.PI / 30) * l_boom;
+                    v_person_kmh = v_person_ms * 3.6;
+                }
+
+                let theta_r_rad = Math.asin(radius / l_load);
+                let theta_r_deg = theta_r_rad * 180 / Math.PI;
+                let l_person = l_load*Math.cos(theta_r_rad);
+
+                let omega_scan_rads = (scan_frequency*thickness_m/l_person) - v_person_ms/l_person;
+                let omega_scan_degs = omega_scan_rads * 180 / Math.PI;
+                let wscan_lperson = w_scan_rads * l_person;
+                let theree_vperson = 3 * v_person_ms;
+                let theta_m_rad = ((4*v_person_ms) / (wscan_lperson - theree_vperson)) * theta_r_rad;
+                let theta_m_deg = theta_m_rad * 180 / Math.PI;
+                let margin_m = theta_m_rad * l_person;
+
+                document.getElementById("outputTextArea").value =
+                      "thickness = " + thickness_cm + " cm = " + thickness_m + " m\n"
+                    + "r = " + radius + " m\n"
+                    + "l_load = " + l_load + " m\n"
+                    + (w_boom_rpm < 0 ? "" : "l_boom = " + l_boom + " m\n")
+                    + "w_scan = " + w_scan_degs + " deg/s = " + w_scan_rads + " rad/s\n"
+                    + (w_boom_rpm < 0 ? "v_person = " : "v_boom = ") + v_person_ms + " m/s = " + v_person_kmh + " km/h\n"
+                    + (w_boom_rpm < 0 ? "" : "w_boom = " + w_boom_rpm + " rpm = " + (w_boom_rpm * Math.PI / 30) + " rad/s\n")
+                    + "scan_frequency = " + scan_frequency + " Hz\n\n"
+                    + "w_scan < " + omega_scan_rads + " rad/s = " + omega_scan_degs + " deg/s\n\n"
+                    + "w_scan*l_perosn = " + wscan_lperson + " > 3*v_person = " + theree_vperson + "\n\n"
+                    + "theta_r = " + theta_r_rad + " rad = " + theta_r_deg + " deg\n\n"
+                    + "theta_m = " + theta_m_rad + " rad = " + theta_m_deg + " deg\n\n"
+                    + "margin_m = " + margin_m + " m";
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <label for="thickness_l" class="label">thickness = </label>
+            <input type="text" name="thickness_cm" value="30" id="thickness_cm" class="input"></input>
+            <label for="thickness_cm" class="label">cm or </label>
+            <input type="text" name="thickness_m" value="-1" id="thickness_m" class="input"></input>
+            <label for="thickness_m" class="label">m</label>
+        </div>
+        <div>
+            <label for="radius" class="label">r = </label>
+            <input type="text" name="radius" value="5" id="radius" class="input"></input>
+            <label for="radius" class="label">m</label>
+        </div>
+        <div>
+            <label for="l_load" class="label">l_load = </label>
+            <input type="text" name="l_load" value="10" id="l_load" class="input"></input>
+            <label for="l_load" class="label">m</label>
+        </div>
+        <div>
+            <label for="l_boom" class="label">l_boom = </label>
+            <input type="text" name="l_boom" value="20" id="l_boom" class="input"></input>
+            <label for="l_boom" class="label">m</label>
+        </div>
+        <div>
+            <label for="w_scan_l" class="label">w_scan = </label>
+            <input type="text" name="w_scan_degs" value="4" id="w_scan_degs" class="input"></input>
+            <label for="w_scan_degs" class="label">deg/s or </label>
+            <input type="text" name="w_scan_rads" value="-1" id="w_scan_rads" class="input"></input>
+            <label for="w_scan_rads" class="label">rad/s</label>
+        </div>
+        <div>
+            <label for="v_person_l" class="label">v_person = </label>
+            <input type="text" name="v_person_ms" value="0.4" id="v_person_ms" class="input"></input>
+            <label for="v_person_ms" class="label">m/s or </label>
+            <input type="text" name="v_person_kmh" value="-1" id="v_person_kmh" class="input"></input>
+            <label for="v_person_kmh" class="label">km/h</label>
+        </div>
+        <div>
+            <label for="w_boom_l" class="label">　or w_boom = </label>
+            <input type="text" name="w_boom_rpm" value="-1" id="w_boom_rpm" class="input"></input>
+            <label for="w_boom_rpm" class="label">rpm</label>
+        </div>
+        <div>
+            <label for="scan_frequency" class="label">scan_frequency = </label>
+            <input type="text" name="scan_frequency" value="8" id="scan_frequency" class="input"></input>
+            <label for="scan_frequency" class="label">m</label>
+        </div>
+        <div>
+            <button id="okBtn" type="button" onClick="myCalculate()">OK</button>
+        </div>
+        <div>
+            <textarea id="outputTextArea" rows="20" cols="90" readonly onclick="this.select()"></textarea>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,4 @@
+float64 end_pos       # target position [deg]
+int32 speed           # rotating speed [deg/sec]
+---
+bool success

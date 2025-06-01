@@ -1,0 +1,6 @@
+<launch>
+  <arg name="host" default="192.168.1.10" /> <!-- lms1xx:192.168.1.5, ld-lrs36xx:192.168.1.10-->
+  <node pkg="ld_lrs3611" name="ld_lrs3611" type="ld_lrs3611_node" output="screen">
+    <param name="host" value="$(arg host)" />
+  </node>
+</launch>
