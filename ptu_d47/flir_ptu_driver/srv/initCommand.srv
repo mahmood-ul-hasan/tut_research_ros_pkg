@@ -1,0 +1,5 @@
+float64 pan_pos
+float64 tilt_pos
+float64 base_speed
+float64 speed
+---

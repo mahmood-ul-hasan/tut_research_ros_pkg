@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pan-Tilt Head Controler</name>
+    </assembly>
+    <members>
+        <member name="F:DPerceptionDemo.Form2.components">
+            <summary>
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:DPerceptionDemo.Form2.Dispose(System.Boolean)">
+            <summary>
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:DPerceptionDemo.Form2.InitializeComponent">
+            <summary>
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="M:DPerceptionDemo.Program.Main">
+            <summary>
+            アプリケーションのメイン エントリ ポイントです。
+            </summary>
+        </member>
+        <member name="F:DPerceptionDemo.FormSerialPort.components">
+            <summary>
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:DPerceptionDemo.FormSerialPort.Dispose(System.Boolean)">
+            <summary>
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:DPerceptionDemo.FormSerialPort.InitializeComponent">
+            <summary>
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="F:DPerceptionDemo.Form1.components">
+            <summary>
+            必要なデザイナ変数です。
+            </summary>
+        </member>
+        <member name="M:DPerceptionDemo.Form1.Dispose(System.Boolean)">
+            <summary>
+            使用中のリソースをすべてクリーンアップします。
+            </summary>
+            <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+        </member>
+        <member name="M:DPerceptionDemo.Form1.InitializeComponent">
+            <summary>
+            デザイナ サポートに必要なメソッドです。このメソッドの内容を
+            コード エディタで変更しないでください。
+            </summary>
+        </member>
+        <member name="T:DPerceptionDemo.Properties.Resources">
+            <summary>
+              ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
+            </summary>
+        </member>
+        <member name="P:DPerceptionDemo.Properties.Resources.ResourceManager">
+            <summary>
+              このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
+            </summary>
+        </member>
+        <member name="P:DPerceptionDemo.Properties.Resources.Culture">
+            <summary>
+              厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+              現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
+            </summary>
+        </member>
+    </members>
+</doc>

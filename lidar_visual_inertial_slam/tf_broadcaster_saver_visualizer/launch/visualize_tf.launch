@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="tf_broadcaster_saver_visualizer" type="tf_broadcaster_saver_visualizer.py" name="tf_broadcaster_saver_visualizer" output="screen" />
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find tf_broadcaster_saver_visualizer)/tf.rviz" />
+</launch>
+

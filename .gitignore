@@ -1,0 +1,15 @@
+# Ignore common large files
+*.bag
+*.pcd
+*.zip
+*.tar
+*.tar.gz
+*.log
+*.bin
+*.mp4
+*.avi
+*.mkv
+
+crane/ultralytics_ros/models/*.pt
+PointCloudProcessing/payload_dectection/payload guide.pptx
+slam_using_inertial_lidar/LIO-Livox-master/doc/*.gif
