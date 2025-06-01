@@ -1,0 +1,5 @@
+<launch>
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins)/../config/vins_rviz_config.rviz" />
+
+  <node name="vins_node" pkg="vins" type="vins_node" output="screen" args="/home/aisl2/catkin_ws/src/vins/VINS_Fusion-simulation/config/crane/crane_realsense_stereo_config.yaml" />
+</launch>

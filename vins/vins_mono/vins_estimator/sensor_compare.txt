@@ -1,0 +1,30 @@
+=========================
+MH public data
+==========================
+
+camera
+--------------------
+rostopic echo -n1 /cam0/image_raw
+header: 
+  seq: 1094
+  stamp: 
+    secs: 1403636634
+    nsecs: 463555500
+  frame_id: "cam0"
+height: 480
+width: 752
+encoding: "mono8"
+is_bigendian: 0
+step: 752
+
+
+imu
+-------------------
+rostopic echo -n1 /imu0 
+header: 
+  seq: 9690
+  stamp: 
+    secs: 1403636587
+    nsecs: 458555500
+  frame_id: "imu4"
+

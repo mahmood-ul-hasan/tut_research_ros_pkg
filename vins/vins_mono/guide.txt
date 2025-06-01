@@ -1,0 +1,7 @@
+
+roslaunch k_crane_gazebo k_crane_imu_lidar_simulation_scan_using_rotate_laser_joint_vins.launch
+roscd laser_to_pcl
+./rotate_start_vins.py 
+python3 move_crane_boom_yaw.py 
+ roslaunch vins_estimator crane_gazebo.launch 
+

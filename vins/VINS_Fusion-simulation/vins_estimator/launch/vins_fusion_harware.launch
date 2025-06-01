@@ -1,0 +1,25 @@
+   <launch>
+
+    <!-- <arg name="config_path" default = "/home/aisl/catkin_ws/src/vins/VINS_Fusion-simulation/config/euroc/mcm.yaml"/> -->
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch" />
+    <include file="$(find xsens_mti_driver)/launch/xsens_mti_node.launch" />
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins)/../config/vins_rviz_config.rviz" />
+  
+   <!-- <node name="vins_fusion" pkg="vins" type="vins_node" output="screen"> -->
+       <!-- <param name="config_file" value="/home/aisl/catkin_ws/src/vins/VINS_Fusion-simulation/config/euroc/mcm.yaml" /> -->
+       <!-- <param name="vins_folder" type="string" value="$(arg vins_path)" /> -->
+    <!-- </node> -->
+
+
+    <!-- <include file="$(find vins)/launch/vins_rviz.launch"> -->
+	<!-- </include> -->
+    <!-- <arg name="config_path" default = "/home/aisl/catkin_ws/src/vins/VINS_Fusion-simulation/config/euroc/mcm.yaml" />
+    <node name="vins_estimator" pkg="vins" type="vins_node" output="screen">
+        <param name="config_file" value="$(arg config_path)" />
+    </node> -->
+    <!-- <node pkg="rosbag" type="play" name="player" args="/home/jiarong/catkin_ws/vins+uwb/Date_4_21/cal3.bag"/> -->
+</launch>
+
+
+
+
